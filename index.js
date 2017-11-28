@@ -5,7 +5,7 @@ var githubUsers = [
     {id: 'thienban', link: '??'},
     {id:'Kazekitai', link: '??'},
     {id:'AssiaTrabelsi', link:'??'},
-    {id: 'MAWAAW', link: '??'},
+    {id: 'MAWAAW', link: '/poker/index.html'},
     {id: 'myR3po', link: '??'}];
 
 
