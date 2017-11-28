@@ -25,3 +25,12 @@ $(".right").click(function(){
 
 
 
+/* INSCRIPTION */
+$('#btn-login').click(function(){
+	console.log('passe');
+    /* get data from form */
+    var name = $('input[name="username"]').val();
+    var password = $('input[name="password"]').val();
+    console.log('name: ', name);
+    console.log('password', password);
+});
