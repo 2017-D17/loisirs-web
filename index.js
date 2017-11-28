@@ -1,12 +1,13 @@
 var githubUsers = [
-    {id:'Melodie44', link:'??'}, 
-    {id:'AlexGeb', link: '??'}, 
-    {id:'Tagpower', link: 'musique'}, 
-    {id: 'thienban', link: '??'},
-    {id:'Kazekitai', link: '??'},
-    {id:'AssiaTrabelsi', link:'??'},
-    {id: 'MAWAAW', link: '??'},
-    {id: 'myR3po', link: '??'}];
+
+    { id: 'Melodie44', link: '??' },
+    { id: 'AlexGeb', link: 'escalade' },
+    { id: 'Tagpower', link: 'musique' },
+    { id: 'thienban', link: '??' },
+    { id: 'Kazekitai', link: '??' },
+    { id: 'AssiaTrabelsi', link: '??' },
+    { id: 'MAWAAW', link: '??' },
+    { id: 'myR3po', link: '??' }];
 
 
 $.get('partials/cardUser.html').then(function (templateCard) {
@@ -17,7 +18,7 @@ $.get('partials/cardUser.html').then(function (templateCard) {
     ).then(function (users) {
         var body = ''
         users.forEach(function (user) {
-            var link = githubUsers.find(function(u) {
+            var link = githubUsers.find(function (u) {
                 return u.id == user.login
             }).link
             body += templateCard
