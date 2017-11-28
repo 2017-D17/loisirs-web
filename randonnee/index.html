@@ -25,9 +25,9 @@
 					 <a class="navbar-brand" href="../index.html">Rando Passion</a>
 				    </div>
 				    <ul id="randoNavbar" class="nav navbar-nav">
-					      <li><a href="../templates/home.html">Accueil</a></li>
+					      <!-- <li><a href="../templates/home.html">Accueil</a></li>
 					      <li><a href="../templates/material.html">Matériel</a></li>
-					      <li><a href="../templates/connexion.html">Connexion</a></li>
+					      <li><a href="../templates/connexion.html">Connexion</a></li> -->
 				    </ul>
 			  </div>
 		</nav>
@@ -40,7 +40,7 @@
 		            <div class="panel panel-info" >
 		                    <div class="panel-heading">
 		                        <div class="panel-title">Connexion</div>
-		                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Mot de passe oublié?</a></div>
+		                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#" data-toggle="modal" data-target="#forgetModal">Mot de passe oublié?</a></div>
 		                    </div>     
 
 		                    <div style="padding-top:30px" class="panel-body" >
@@ -63,7 +63,7 @@
 		                                    <!-- Button -->
 
 		                                    <div class="col-sm-12 controls">
-		                                      <a id="btn-login" href="#" class="btn btn-success">Je me connecte  </a>
+		                                      <a id="btn-login" href="#" onclick='return login()' class="btn btn-success">Je me connecte  </a>
 
 		                                    </div>
 		                                </div>
@@ -103,7 +103,7 @@
 		                                <div class="form-group">
 		                                    <label for="firstname" class="col-md-3 control-label form-label">Nom d'utilisateur</label>
 		                                    <div class="col-md-9">
-		                                        <input type="text" class="form-control" name="firstname" placeholder="nom d'utilisateur">
+		                                        <input type="text" class="form-control" name="uname" placeholder="nom utilsateur">
 		                                    </div>
 		                                </div>
 		                               
@@ -117,7 +117,7 @@
 		                                <div class="form-group">
 		                                    <!-- Button -->                                        
 		                                    <div class="col-md-offset-3 col-md-9">
-		                                        <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Je m'inscris</button>
+		                                        <button id="btn-signup" type="button" onclick='register()' class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Je m'inscris</button>
 		                                        <span style="margin-left:8px;"></span>  
 		                                    </div>
 		                                </div>
@@ -126,6 +126,29 @@
 		                         </div>
 		                    </div>
 		         </div> 
+		    </div>
+
+		    <!-- Modal -->
+		    <div id="forgetModal" class="modal fade">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                    <h4 class="modal-title">Mot de passe oublié?</h4>
+		                </div>
+		                <div class="modal-body">
+		                	<div class="text-center ">
+		                		<img src="./img/smiley.gif" alt="forgetPass" width="150" height="150">
+		         				<p></p>
+		         				<p>Je ne peux pas t'aider pour le retrouver !!</p>
+		                	</div>
+		                	
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+		                </div>
+		            </div>
+		        </div>
 		    </div>
 
 	</div>
