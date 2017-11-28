@@ -2,9 +2,9 @@ var githubUsers = [
 
     { id: 'Melodie44', link: '??' },
     { id: 'AlexGeb', link: 'escalade' },
+    { id: 'Kazekitai', link: 'randonnee' },
     { id: 'Tagpower', link: 'musique' },
     { id: 'thienban', link: 'football' },
-    { id: 'Kazekitai', link: '??' },
     { id: 'AssiaTrabelsi', link: '??' },
     { id: 'MAWAAW', link: 'poker' },
     { id: 'myR3po', link: '??' }];
