@@ -1,13 +1,13 @@
 var githubUsers = [
+
     { id: 'Melodie44', link: '??' },
     { id: 'AlexGeb', link: 'escalade' },
-    { id: 'Tagpower', link: '??' },
-    { id: 'thienban', link: '??' },
     { id: 'Kazekitai', link: 'randonnee' },
+    { id: 'Tagpower', link: 'musique' },
+    { id: 'thienban', link: 'football' },
     { id: 'AssiaTrabelsi', link: '??' },
-    { id: 'MAWAAW', link: '??' },
+    { id: 'MAWAAW', link: 'poker' },
     { id: 'myR3po', link: '??' }];
-
 
 $.get('partials/cardUser.html').then(function (templateCard) {
     Promise.all(
