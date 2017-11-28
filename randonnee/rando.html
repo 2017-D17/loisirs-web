@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="./css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="./js/rando.js"></script>
 </head>
 
 <body>
@@ -15,18 +16,17 @@
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="logo">
 				<a class="navbar-brand" href="#">
-							<img src="img/logo.png" alt="materiel" width="50" height="50">
+							<img src="img/logo.png" alt="logo" width="50" height="50">
 				</a>
 			</div>
 			 <div class="container-fluid">
 				    <div class="navbar-header">
 					 <a class="navbar-brand" href="#">Rando Passion</a>
 				    </div>
-				    <ul class="nav navbar-nav">
-					      <li class="active"><a href="#">Accueil</a></li>
-					      <li><a href="#">Matériel</a></li>
-					      <li><a href="#">Circuits</a></li>
-					      <li><a href="#">Contact</a></li>
+				    <ul  id="randoNavbar" class="nav navbar-nav">
+					      <li><a href="rando.html">Accueil</a></li>
+					      <li><a href="templates/material.html">Matériel</a></li>
+					      <li><a href="templates/contact.html">Contact</a></li>
 				    </ul>
 			  </div>
 		</nav>
@@ -37,7 +37,7 @@
 		<div class ="content-title">
 			<h1>La Randonnée: un sport, une passion</h1>	
 		</div>
-		<div class="text-center">
+		<div class="text-content text-center home">
 			<p>La randonnée se différencie de la promenade ou balade de part la distance parcourue et l'effort physique effectué. Il s'agit d'une activité de plein air qui se pratique seule ou en groupe.</p>
 			<p>C'est à la fois un loisir de découverte et une forme d'épanouissement de soi, tout en étant un sport facilement accessible et praticable.</p>
 		</div>
@@ -97,11 +97,6 @@
 
 	</div>
 
-	<!-- <footer class="footer">
-		<div class="container text-center">
-			<small class="copyright"><a class="white" href="/">© 2017 Sandra</a></small>
-		</div>
-	</footer> -->
 	<footer class="navbar-default navbar-fixed-bottom">
 	  <div class="container-fluid">
 	    <small class="copyright"><a class="white" href="/">© 2017 Sandra</a></small>

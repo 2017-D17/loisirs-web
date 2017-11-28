@@ -18,15 +18,22 @@ html,body {
 }
 
 .content {
-	font-size: 20px;
 	margin-right: 20%;
 	margin-left: 20%;
 
 }
 
+.home {
+	font-size: 20px;
+}
+
 .text-center {
-	margin-top: 40px;
 	text-align: center;
+}
+
+.text-content {
+	margin-top: 40px;
+	font-size: 17px;
 }
 
 .container {
@@ -52,4 +59,15 @@ html,body {
     background-color: black;
     border-color: white;
     text-align: center;
+}
+
+.center-div {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+
+.activedButton {
+	color: #fff;
+    background-color: #080808
 }

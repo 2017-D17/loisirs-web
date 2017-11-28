@@ -22,3 +22,6 @@ $(".left").click(function(){
 $(".right").click(function(){
     $("#myCarousel").carousel("next");
 });
+
+
+
