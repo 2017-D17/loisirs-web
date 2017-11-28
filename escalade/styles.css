@@ -1,5 +1,8 @@
 #logo{
     height: auto; 
     width: auto; 
-    max-height: 75px;
+    max-height: 50px;
+}
+body{
+    padding-top:75px;
 }
