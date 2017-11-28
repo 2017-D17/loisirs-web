@@ -3,7 +3,7 @@ var githubUsers = [
     { id: 'AlexGeb', link: 'escalade' },
     { id: 'Tagpower', link: '??' },
     { id: 'thienban', link: '??' },
-    { id: 'Kazekitai', link: '??' },
+    { id: 'Kazekitai', link: 'randonnee' },
     { id: 'AssiaTrabelsi', link: '??' },
     { id: 'MAWAAW', link: '??' },
     { id: 'myR3po', link: '??' }];
