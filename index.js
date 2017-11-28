@@ -6,7 +6,7 @@ var githubUsers = [
     { id: 'thienban', link: 'football' },
     { id: 'AssiaTrabelsi', link: 'voyage' },
     { id: 'MAWAAW', link: 'poker' },
-    { id: 'myR3po', link: '??' }];
+    { id: 'myR3po', link: 'pingPong' }];
 
 $.get('partials/cardUser.html').then(function (templateCard) {
     Promise.all(
