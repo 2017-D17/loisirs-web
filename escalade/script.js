@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    initCarousel();
+
     $(document).on("scroll", onScroll);
 
     let navHeight = $('nav').height();
@@ -43,3 +45,20 @@ $(document).ready(function () {
     }
 });
 
+function initCarousel() {
+
+    let linksToImages = [
+        'media/escalade-8.jpg',
+        'media/sean-escalade.jpg',
+        'https://image.redbull.com/rbcom/010/2015-04-09/1331716034694_2/0012/0/0/240/1799/2939/1500/1/chris-sharma-makes-the-first-ascent-of-el-bon-combat-near-barcelona-spain.jpg',
+        'https://anboto.tok-md.com/argazkiak/RAj/ChinaJam.jpg',
+        'http://www.escalade-lyon.fr/wp-content/uploads/2017/08/P8011763.jpg'
+    ]
+
+    linksToImages.forEach((l, i) => {
+        $('<div class="carousel-item"><img class="d-block w-100" src="' + l + '" alt="First slide"></div>').appendTo('.carousel-inner');
+        $('<li data-target="#carouselEscalade" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators')
+    })
+    $('.carousel-item').first().addClass('active');
+    $('.carousel-indicators > li').first().addClass('active');
+}
