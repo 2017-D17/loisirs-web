@@ -64,9 +64,7 @@ $('#inscription').on('click', function (e) {
     });
     xhr.send(data);
 
-    setCookie("userConnected", true, 30);
-
-    alert("Tu est bien inscrit " + document.getElementById("name").value + ", tu as acces au page du site");
+    alert("Tu est bien inscrit " + document.getElementById("name").value + ", connect toi !!");
 
 });
 
@@ -78,30 +76,37 @@ $('#connexion').on('click', function (e) {
     var url = "http://loisirs-web-backend.cleverapps.io/users";
 
     xhr.onreadystatechange = function () {
+
+        var trouve = false;
+
         if (xhr.readyState === 4 && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
 
-            var trouve = false
             var i;
             for (i = 0; i < json.length; i++) {
                 if (document.getElementById("name2").value == json[i].name && document.getElementById("password2").value == json[i].password) {
                     trouve = true;
                 }
             }
+        }
 
-            if (trouve) {
-                alert("Tu est bien connecté !");
-                window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
-            }
-
-            setCookie("userConnected", trouve, 30);
-
+        if (trouve) {
+            alert("Tu est bien connecté !");
+            setCookie("userConnected", trouve, 30);                
+            window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
         }
     };
 
     xhr.open("GET", url, true);
     xhr.send();
 
+});
+
+
+$('#deconnexion').on('click', function (e) {
+    
+    setCookie("userConnected", "", 30);      
+    
 });
 
 
@@ -129,6 +134,7 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
+    console.log("check check check");
     var connected = getCookie("userConnected");
     if (!connected) {
         window.location.replace("http://127.0.0.1:8080/poker");
@@ -159,11 +165,10 @@ function addMainBlock() {
 
     var connected = getCookie("userConnected");
 
-    if (connected) {
-        $("#main2").hide();
-        $("#main1").show();
+    if (connected=="true") {
+        $("#main1").hide();
+        $("#main2").show();
     }
-
     else {
         $("#main1").show();
         $("#main2").hide();

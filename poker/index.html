@@ -31,7 +31,7 @@
             <a href="template/histoire.html">L'histoire</a>
           </li>
           <li>
-            <a href="template/jeu.html">Le jeu</a>
+            <a href="template/jeu.html" onclick="checkCookie()">Le jeu</a>
           </li>
           <li>
             <a href="template/strategie.html">La stratégie</a>
@@ -124,7 +124,50 @@
 
     <div id="main2">
 
-      <p>Tu est connecter malehreusement tu dois delete ton cookie pour te deco...</p>
+      <div class="form">
+
+
+        <ul class="tab-group">
+          <li class="tab active">
+            <a href="#signout">Deconnexion</a>
+          </li>
+          <li class="tab">
+            <a href="#profile">Profile</a>
+          </li>
+        </ul>
+
+
+        <div class="tab-content">
+          <div id="signout">
+            <h1>Tu part déjà ()__()' ?</h1>
+
+            <form>
+
+              <button id="deconnexion" class="button button-block" />Se deconnecter</button>
+
+            </form>
+
+          </div>
+
+          <div id="login">
+            <h1>Profile, bientôt disponible !</h1>
+
+            <form>
+
+              <div class="field-wrap">
+                <label>
+                  Profile
+                  <span class="req">*</span>
+                </label>
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
