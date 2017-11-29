@@ -50,6 +50,7 @@ $('#inscription').on('click', function (e) {
 
     var xhr = new XMLHttpRequest();
     var url = "http://loisirs-web-backend.cleverapps.io/users";
+
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
@@ -62,6 +63,10 @@ $('#inscription').on('click', function (e) {
         "password": document.getElementById("password").value
     });
     xhr.send(data);
+
+    setCookie("userConnected", true, 30);
+
+    alert("Tu est bien inscrit " + document.getElementById("name").value + ", tu as acces au page du site");
 
 });
 
@@ -85,13 +90,11 @@ $('#connexion').on('click', function (e) {
             }
 
             if (trouve) {
-                window.location.replace("http://127.0.0.1:8080/jeu.html");
-            }
-            else {
-
+                alert("Tu est bien connecté !");
+                window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
             }
 
-
+            setCookie("userConnected", trouve, 30);
 
         }
     };
@@ -102,3 +105,67 @@ $('#connexion').on('click', function (e) {
 });
 
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/poker/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var connected = getCookie("userConnected");
+    if (!connected) {
+        window.location.replace("http://127.0.0.1:8080/poker");
+    }
+}
+
+/*function addMainBlock() {
+
+    var connected = getCookie("userConnected");
+
+    $("#main").empty();
+
+    if (connected) {
+        $.get("template/formOut.html").then(resp => {
+            document.getElementById('main').innerHTML = resp;
+        })
+    }
+
+    else {
+        $.get("template/formIn.html").then(resp => {
+            document.getElementById('main').innerHTML = resp;
+        })
+    }
+}*/
+
+
+function addMainBlock() {
+
+    var connected = getCookie("userConnected");
+
+    if (connected) {
+        $("#main2").hide();
+        $("#main1").show();
+    }
+
+    else {
+        $("#main1").show();
+        $("#main2").hide();
+    }
+}
