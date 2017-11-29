@@ -1,5 +1,5 @@
 /* server url */
-var serverUrl = 'http://loisirs-web-backend.cleverapps.io/users';
+var serverUrl = 'https://loisirs-web-backend.cleverapps.io/users';
 
 /**** BACK END FUNCTIONS ****/
 /* login function */
