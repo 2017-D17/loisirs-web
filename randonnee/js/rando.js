@@ -2,6 +2,10 @@
 var serverUrl = 'https://loisirs-web-backend.cleverapps.io/users';
 
 /**** BACK END FUNCTIONS ****/
+
+/* cookies */
+var log_in='false';
+
 /* login function */
 function login() {
     console.log('login');
