@@ -12,3 +12,7 @@ body{
     max-height: 436px;
     overflow:hidden;
 }
+
+#alert_placeholder{
+    padding-top: 20px;
+}

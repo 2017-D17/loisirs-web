@@ -1,15 +1,21 @@
 let BACK_URL = 'http://loisirs-web-backend.cleverapps.io/users';
 
+
+
 function login() {
     console.log('login called')
     let user = getJsonFromForm('login');
     console.log(user)
     $.get(BACK_URL + '/?name=' + user.name).then(resp => {
-        if (resp && resp[0] && resp[0].password == user.password) {
-            console.log('connected !!!')
-            //location.href = "escalade.html";
+        if (resp && resp[0]) {
+            if (resp[0].password == user.password) {
+                console.log('connected !!!')
+                location.href = "escalade.html";
+            } else {
+                showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
+            }
         } else {
-            console.log('error connecting ! ', resp)
+            showErrorAlert("L'utilisateur " + user.name + " n'existe pas !")
         }
     })
 }
@@ -24,7 +30,7 @@ function create() {
                 location.href = "escalade.html";
             })
         } else {
-            alert('user already exist !')
+            showErrorAlert("L'utilisateur " + user.name + " existe déjà !")
         }
     })
 }
@@ -37,4 +43,12 @@ function getJsonFromForm(str) {
         obj[pair[0]] = pair[1];
     }
     return obj;
+}
+
+function showErrorAlert(msg) {
+    console.log(msg)
+    $('<div class="alert alert-danger fade show" role="alert" id="error-alert"><span><p>' + msg + '</p></span></div>').appendTo('#alert_placeholder');
+    setTimeout(() => {
+        $('#error-alert').alert('close')
+    }, 1000);
 }
