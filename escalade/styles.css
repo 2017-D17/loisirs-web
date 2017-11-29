@@ -1,0 +1,18 @@
+#logo{
+    height: auto; 
+    width: auto; 
+    max-height: 50px;
+}
+
+body {
+    padding-top:85px;
+}
+
+#carouselEscalade {
+    max-height: 436px;
+    overflow:hidden;
+}
+ 
+#alert_placeholder{
+    padding-top: 20px;
+}
