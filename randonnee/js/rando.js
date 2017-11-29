@@ -19,7 +19,7 @@ function login() {
           if(data.length > 0 ) {
             if(data[0].password == user.password){
                 console.log( "connected" );
-                window.location.replace("templates/home.html");
+                window.location.replace("./templates/home.html");
             }else {
                 alert("le mot de passe est incorrect");
             }

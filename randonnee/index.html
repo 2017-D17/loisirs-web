@@ -3,26 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Rando Passion</title>
+	<base href="./"></base>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/form.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/form.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="./js/rando.js"></script>
+	<script src="js/rando.js"></script>
 </head>
 
 <body>
 	<div class="header">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="logo">
-				<a class="navbar-brand" href="../index.html">
-							<img src="../img/logo.png" alt="logo" width="50" height="50">
+				<a class="navbar-brand" href="index.html">
+							<img src="img/logo.png" alt="logo" width="50" height="50">
 				</a>
 			</div>
 			 <div class="container-fluid">
 				    <div class="navbar-header">
-					 <a class="navbar-brand" href="../index.html">Rando Passion</a>
+					 <a class="navbar-brand" href="index.html">Rando Passion</a>
 				    </div>
 				    <ul id="randoNavbar" class="nav navbar-nav">
 				    </ul>
@@ -37,7 +38,7 @@
 		            <div class="panel panel-info" >
 		                    <div class="panel-heading">
 		                        <div class="panel-title">Connexion</div>
-		                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#" data-toggle="modal" data-target="#forgetModal">Mot de passe oublié?</a></div>
+		                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a class="white-hover-a" href="#" data-toggle="modal" data-target="#forgetModal">Mot de passe oublié?</a></div>
 		                    </div>     
 
 		                    <div style="padding-top:30px" class="panel-body" >
@@ -87,7 +88,7 @@
 		                    <div class="panel panel-info">
 		                        <div class="panel-heading">
 		                            <div class="panel-title">Inscription</div>
-		                            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Connexion</a></div>
+		                            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" class="white-hover-a" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Connexion</a></div>
 		                        </div>  
 		                        <div class="panel-body" >
 		                            <form id="signupform" class="form-horizontal" role="form">
