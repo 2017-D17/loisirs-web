@@ -1,6 +1,5 @@
 /* server url */
 var serverUrl = 'http://loisirs-web-backend.cleverapps.io/users';
-var localServerUrl = '127.0.0.1:8080/users';
 
 /**** BACK END FUNCTIONS ****/
 /* login function */
@@ -45,7 +44,7 @@ function register() {
     
     if(user.name != "" && user.password != "") {
         /* test if user exists  */
-        $.get( localServerUrl + '/?name=' + user.name, function( data ) {
+        $.get( serverUrl + '/?name=' + user.name, function( data ) {
           console.log( "Data Loaded: ", data );
           console.log("data size ", data.length);
           if(data.length > 0 && data[0].password == user.password) {
@@ -55,8 +54,7 @@ function register() {
           } else {
             console.log( "user does not exist" );
             /*insert user into db.json */
-            $.post( localServerUrl, user).done(function( data ) {
-                alert( "Data Loaded: " + data );
+            $.post( serverUrl, user).done(function( data ) {
                 window.location.replace("templates/home.html");
             }).fail(function() {
                 console.log( "error post" );
