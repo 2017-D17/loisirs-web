@@ -8,8 +8,8 @@ function inscription() {
     var motpass = document.getElementById("inputPassword").value;
     console.log("name = " + nom + " et passs = " + motpass)
     // Send the data using post
-    var url = "http://loisirs-web-backend.cleverapps.io/users";
-    var url1 = "http://loisirs-web-backend.cleverapps.io/users/?name=" + nom;
+    var url = "https://loisirs-web-backend.cleverapps.io/users";
+    var url1 = "https://loisirs-web-backend.cleverapps.io/users/?name=" + nom;
 
     //Vérifier si utilisateur est déjà inscrit
     $.get(url1).then(response => {

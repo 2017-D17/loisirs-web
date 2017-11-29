@@ -6,7 +6,7 @@ function connexion() {
     var motpass = document.getElementById("inputPassword1").value;
     console.log("name = " + nom + " et passs = " + motpass)
     // Verifier la base donnée utilisateur
-    var url = "http://loisirs-web-backend.cleverapps.io/users/?name=" + nom;
+    var url = "https://loisirs-web-backend.cleverapps.io/users/?name=" + nom;
 
     var i;
     //récupérer et comparer les données
