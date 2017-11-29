@@ -13,6 +13,8 @@
 </head>
 
 <body>
+
+	<h1>Connexion</h1>
 <!-- http://loisirs-web-backend.cleverapps.io/users -->
 	<form class="form-inline" method="get">
 	  <div class="form-group">
@@ -43,7 +45,8 @@
 									} else {
 										if(response[0].password == pwd) {
 											console.log("yay");
-											location.href = "index.html";
+											document.cookie = "username="+nom; 
+											location.href = "home.html";
 										} else {
 											document.getElementById('result').innerText = " Mot de passe incorrect";
 										}
