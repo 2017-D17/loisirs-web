@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Connexion</title>
+	<title>Inscription</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js " integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=" anonymous "></script>
@@ -23,35 +23,21 @@
 	    <label for="pwd">Password :</label>
 	    <input type="password" class="form-control" id="pwd">
 	  </div>
-	  <button class="btn btn-default" onclick="connexion(event)">Soumettre</button>
-	  <label id="result"></label>
+	  <button class="btn btn-default" onclick="inscription(event)">Soumettre</button>
+	  <label id="result"> </label>
 	</form> 
 
 	<script type="text/javascript">
-		function connexion(e) {
+		function inscription(e) {
 			e.preventDefault();
 			var nom = document.getElementById('nom').value;
 			var pwd = document.getElementById('pwd').value;
-			var data = {"name" : nom, "password" : pwd};
 
-			console.log(json);
-
-			if(nom.length > 0 && pwd.length > 0) { //validation de l'input
-				var json = $.getJSON("https://loisirs-web-backend.cleverapps.io/users/?name=" + nom).then(response => {
-									if (response.length == 0) {
-									document.getElementById('result').innerText = " Utilisateur inconnu";
-									} else {
-										if(response[0].password == pwd) {
-											console.log("yay");
-											location.href = "index.html";
-										} else {
-											document.getElementById('result').innerText = " Mot de passe incorrect";
-										}
-									}
-								}
-							);
-
-
+			if(nom.length > 0 && pwd.length > 0) {
+				var data = {"name" : nom, "password" : pwd};
+				console.log(data);
+				$.post("https://loisirs-web-backend.cleverapps.io/users", data);
+				location.href = "connexion.html"
 			} else {
 				if (nom === "") {
 					document.getElementById('result').innerText = " Le nom ne peut pas être vide";	
