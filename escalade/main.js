@@ -20,6 +20,7 @@ function loadInnerHtml(url) {
         if (url == LOISIR_URL) {
             initCarousel();
             initScroll();
+            displayUserName();
         }
     })
 }
@@ -34,6 +35,7 @@ function login() {
                 console.log('connected !!!')
                 loadInnerHtml(LOISIR_URL);
                 setCookie("logged_in", "true")
+                localStorage.setItem("username", user.name)
             } else {
                 showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
             }
@@ -52,6 +54,7 @@ function create() {
             $.post(BACK_URL, user).then(resp => {
                 loadInnerHtml(LOISIR_URL);
                 setCookie("logged_in", "true")
+                localStorage.setItem("username", user.name)
             })
         } else {
             showErrorAlert("L'utilisateur " + user.name + " existe déjà !")
@@ -68,7 +71,11 @@ function getJsonFromForm(str) {
     }
     return obj;
 }
-
+function displayUserName() {
+    let username = localStorage.getItem('username');
+    console.log(username);
+    $('<span class="nav-link">' + username + '</span>').appendTo('#username_placeholder');
+}
 function showErrorAlert(msg) {
     console.log(msg)
     $('<div class="alert alert-danger fade show" role="alert" id="error-alert"><span><p>' + msg + '</p></span></div>').appendTo('#alert_placeholder');
@@ -141,6 +148,7 @@ function initScroll() {
 
 function logout() {
     setCookie("logged_in", "false")
+    localStorage.clear();
     loadInnerHtml(FORMS_URL);
 }
 
