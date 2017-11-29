@@ -1,4 +1,4 @@
-const TEMPLATES_URL = "/escalade/templates";
+const TEMPLATES_URL = "./templates";
 const FORMS_URL = TEMPLATES_URL + "/formulaire.html";
 const LOISIR_URL = TEMPLATES_URL + "/escalade.html";
 const BACK_URL = 'https://loisirs-web-backend.cleverapps.io/users';
