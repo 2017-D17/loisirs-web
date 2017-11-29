@@ -1,32 +1,32 @@
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
     var $this = $(this),
-    label = $this.prev('label');
+        label = $this.prev('label');
 
     if (e.type === 'keyup') {
-            if ($this.val() === '') {
-        label.removeClass('active highlight');
+        if ($this.val() === '') {
+            label.removeClass('active highlight');
         } else {
-        label.addClass('active highlight');
+            label.addClass('active highlight');
         }
     } else if (e.type === 'blur') {
-        if( $this.val() === '' ) {
-            label.removeClass('active highlight'); 
-            } else {
-            label.removeClass('highlight');   
-            }   
+        if ($this.val() === '') {
+            label.removeClass('active highlight');
+        } else {
+            label.removeClass('highlight');
+        }
     } else if (e.type === 'focus') {
-    
-    if( $this.val() === '' ) {
-            label.removeClass('highlight'); 
-            } 
-    else if( $this.val() !== '' ) {
+
+        if ($this.val() === '') {
+            label.removeClass('highlight');
+        }
+        else if ($this.val() !== '') {
             label.addClass('highlight');
-            }
+        }
     }
 
 });
-  
+
 $('.tab a').on('click', function (e) {
 
     e.preventDefault();
@@ -66,28 +66,32 @@ $('#inscription').on('click', function (e) {
 });
 
 $('#connexion').on('click', function (e) {
-    
+
     e.preventDefault();
 
     var xhr = new XMLHttpRequest();
     var url = "http://loisirs-web-backend.cleverapps.io/users";
-    
+
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
 
             var trouve = false
             var i;
-            for(i=0; i<json.length; i++) {
-                if( document.getElementById("name2").value == json[i].name && document.getElementById("password2").value == json[i].password ) {
+            for (i = 0; i < json.length; i++) {
+                if (document.getElementById("name2").value == json[i].name && document.getElementById("password2").value == json[i].password) {
                     trouve = true;
-                    alert("OK TU EST CONNECTE");
                 }
             }
 
-            if(!trouve) {
-                alert("Name ou Password incorrect !")
+            if (trouve) {
+                window.location.replace("http://127.0.0.1:8080/jeu.html");
             }
+            else {
+
+            }
+
+
 
         }
     };
