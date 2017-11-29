@@ -11,20 +11,18 @@ function connexion() {
     var i;
     //récupérer et comparer les données
     $.get(url).then(response => {
-        if (response.length == 0) {
+        if (nom == "" && motpass == "") {
+            alert("Veuillez remplir le champ");
+        } else if (response.length == 0) {
             alert("Nom inconnu")
         }
-        else {
-            if (response[0].password == motpass) {
-                location.href = "home.html";
-            }
-            else {
-                alert("Mot de passe incorrect")
-            }
-
+        else if (response[0].password == motpass) {
+            location.href = "home.html";
         }
-
+        else {
+            alert("Mot de passe incorrect")
+        }
     })
-}
+} l
 
 

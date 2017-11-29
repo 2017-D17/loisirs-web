@@ -13,10 +13,12 @@ function inscription() {
 
     //Vérifier si utilisateur est déjà inscrit
     $.get(url1).then(response => {
-        if (response.length > 0) {
+        if (nom == "" && motpass == "") {
+            alert("Veuillez remplir le champ");
+        }
+        else if (response.length > 0) {
             alert("Vous êtes déjà inscrit")
         }
-        //mettre les données 
         else {
             $.post(url, { "name": nom, "password": motpass }).then(resp => {
                 console.log(resp)
