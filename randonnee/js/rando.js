@@ -5,11 +5,13 @@ var serverUrl = 'http://loisirs-web-backend.cleverapps.io/users';
 /* login function */
 function login() {
     console.log('login');
+    /* get params from form */
     var user = {
         name: $('input[name="username"]').val(),
         password: $('input[name="password"]').val()
     };
     console.log(user);
+    /* test if params exist */
     if(user.name != "" && user.password != "") {
         $.get( serverUrl + '/?name=' + user.name, function( data ) {
           console.log( "Data Loaded: ", data );
@@ -26,7 +28,7 @@ function login() {
             alert("le nom saisi n'est pas reconnu");
           }
         }).fail(function() {
-            console.log( "error" );
+            console.log( "error get" );
         });
     } else {
         alert('tous les champs doivent être saisis');
@@ -36,12 +38,14 @@ function login() {
 /* register function */
 function register() {
     console.log('register');
+    /* get params from form */
     var user = {
         name: $('input[name="uname"]').val(),
         password: $('input[name="passwd"]').val()
     };
     console.log(user);
-    
+
+    /* test if params exist */
     if(user.name != "" && user.password != "") {
         /* test if user exists  */
         $.get( serverUrl + '/?name=' + user.name, function( data ) {
@@ -53,7 +57,7 @@ function register() {
             window.location.replace("index.html");
           } else {
             console.log( "user does not exist" );
-            /*insert user into db.json */
+            /*insert user into db.json (server) */
             $.post( serverUrl, user).done(function( data ) {
                 window.location.replace("templates/home.html");
             }).fail(function() {
