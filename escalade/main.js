@@ -51,6 +51,7 @@ function create() {
         if (resp.length == 0) {
             $.post(BACK_URL, user).then(resp => {
                 loadInnerHtml(LOISIR_URL);
+                setCookie("logged_in", "true")
             })
         } else {
             showErrorAlert("L'utilisateur " + user.name + " existe déjà !")
