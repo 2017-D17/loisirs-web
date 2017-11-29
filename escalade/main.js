@@ -1,7 +1,7 @@
 const TEMPLATES_URL = "/escalade/templates";
 const FORMS_URL = TEMPLATES_URL + "/formulaire.html";
 const LOISIR_URL = TEMPLATES_URL + "/escalade.html";
-const BACK_URL = 'http://loisirs-web-backend.cleverapps.io/users';
+const BACK_URL = 'https://loisirs-web-backend.cleverapps.io/users';
 
 
 $(document).ready(function () {
@@ -27,6 +27,7 @@ function login() {
         if (resp && resp[0]) {
             if (resp[0].password == user.password) {
                 console.log('connected !!!')
+
                 loadInnerHtml(LOISIR_URL);
             } else {
                 showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
