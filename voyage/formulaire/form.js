@@ -52,7 +52,7 @@ jQuery(function () {
         e.preventDefault()
         if (valid == true)
 
-            location = "voyage.html";
+            location = "/voyage";
 
         else
 
