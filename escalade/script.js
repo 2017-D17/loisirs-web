@@ -4,6 +4,7 @@ $(document).ready(function () {
     $(document).on("scroll", onScroll);
 
     let navHeight = $('nav').height();
+
     $('body').css('padding-top', + navHeight + 15 + 'px');
     $(window).resize(function () {
         navHeight = $('nav').height();
