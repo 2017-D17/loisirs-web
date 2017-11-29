@@ -36,16 +36,15 @@
                 var login = document.getElementById("login").value;
                 var password = document.getElementById("password").value;
 
+                document.cookie = "name="+login;
+
+                alert(document.cookie);
+
                 $.getJSON("http://loisirs-web-backend.cleverapps.io/users", function(users){
 
                     $.each(users,function(index, u){
 
                         if(u.name == login && u.password == password){
-
-                            document.cookie = "name="+login;
-                            document.cookie = "password="+password;
-
-                            alert(document.cookie);
 
                             document.location.href = "home.html";
 

@@ -19,6 +19,7 @@
                     <li><a href="pageGOT.html">Série GOT</a></li>
                     <li><a href="pageTWD.html">Série TWD</a></li>
                 </ul>
+                <button class="btn btn-default navbar-btn" onclick="logOut()">Déconnexion</button>
             </div>
         </nav>
 
@@ -53,5 +54,13 @@
                   </a>
             </div>
         </div>
+        <script>
+            function logOut(){
+
+                alert(document.cookie);
+
+                document.location.href = "index.html"
+            }
+        </script>
     </body>
 </html>
