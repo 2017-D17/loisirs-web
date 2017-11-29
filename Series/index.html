@@ -27,6 +27,7 @@
                         <button type="button" class="btn btn-primary btn-block" onclick="valid()">Valider</button>
                     </form>
                     <div class="panel-footer"><a href="connexion.html">Connexion</a></div>
+                    <p id="alert"></p>
                 </div>
             </div>
         </div>
@@ -37,9 +38,16 @@
                 login = document.getElementById("login").value;
                 password = document.getElementById("password").value;
 
-                var newUser = {"name" : login, "password" : password};
+                if(login == null || password == null) {
 
-                $.post("http://loisirs-web-backend.cleverapps.io/users", newUser).then(function(){document.location.href = "home.html"});
+                    document.getElementById("alert").innerHTML = "Le login ou password est vide";
+
+                }else{
+
+                    var newUser = {"name" : login, "password" : password};
+
+                    $.post("http://loisirs-web-backend.cleverapps.io/users", newUser).then(function(){document.location.href = "home.html"});
+                }
             }
         </script>
     </body>
