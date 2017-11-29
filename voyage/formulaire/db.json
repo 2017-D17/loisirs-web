@@ -1,0 +1,81 @@
+{
+    
+        "users": [
+    
+            {
+    
+                "id": 1,
+    
+                "name": "John",
+    
+                "password": "123"
+    
+            },
+    
+            {
+    
+                "id": 2,
+    
+                "name": "Bob",
+    
+                "password": "123"
+    
+            },
+    
+            {
+    
+                "id": 3,
+    
+                "name": "Jack",
+    
+                "password": "123"
+    
+            }
+    
+        ],
+    
+        "hobbies": [
+    
+            {
+    
+                "id": 1,
+    
+                "name": "randonnee",
+    
+                "description": ""
+    
+            },
+    
+            {
+    
+                "id": 2,
+    
+                "name": "escalade",
+    
+                "description": ""
+    
+            },
+    
+            {
+    
+                "id": 3,
+    
+                "name": "poker",
+    
+                "description": ""
+    
+            },
+    
+            {
+    
+                "id": 4,
+    
+                "name": "ping-pong",
+    
+                "description": ""
+    
+            }
+    
+        ]
+    
+    }
