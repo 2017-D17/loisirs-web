@@ -9,9 +9,24 @@ function inscription() {
     console.log("name = " + nom + " et passs = " + motpass)
     // Send the data using post
     var url = "http://loisirs-web-backend.cleverapps.io/users";
-    $.post(url, { "name": nom, "password": motpass }).then(resp => {
-        console.log(resp)
+    var url1 = "http://loisirs-web-backend.cleverapps.io/users/?name=" + nom;
+
+    //Vérifier si utilisateur est déjà inscrit
+    $.get(url1).then(response => {
+        if (response.length > 0) {
+            alert("Vous êtes déjà inscrit")
+        }
+        //mettre les données 
+        else {
+            $.post(url, { "name": nom, "password": motpass }).then(resp => {
+                console.log(resp)
+            })
+            location.href = "home.html";
+            alert("Vous êtes inscrit");
+        }
+
     })
+
 }
 
 
