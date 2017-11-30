@@ -106,3 +106,11 @@ a {
 .white-hover-a:hover {
 	color: white;
 }
+
+.comment-div  {
+	float: none !important;
+}
+
+.commentHeader {
+	display: inline;
+}
