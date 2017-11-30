@@ -13,4 +13,6 @@ p {
 form {
     display: inline-block;
     text-align: center;
+    margin-left: 1cm;
+    margin-right: 1cm;
 }
