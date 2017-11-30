@@ -5,23 +5,22 @@
 
 <head>
 
-  <link href="./css/bootstrap.css" rel="stylesheet">
-
-  <!-- Un peu de style pour la visualisation -->
-
+  <meta charset="utf-8">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
   <style type="text/css">
-    .col-lg-2 {
-      line-height: 100px;
+    [class*="col"] {
+      margin-bottom: 20px;
     }
 
-    .col-lg-5 {
-      line-height: 200px;
+    img {
+      width: 100%;
     }
 
-    .col-lg-12 {
-      line-height: 80px;
+    .content {
+      margin-top: 100px
     }
   </style>
+  <title>Mes Passions</title>
 
 </head>
 
@@ -50,42 +49,23 @@
             <a href="contact.html">Contact</a>
           </li>
           <li>
-            <a href="index.html">déconnexion</a>
+            <a class="btn btn-warning" role="button" onclick="deconnexion()">Deconnexion
+            </a>
           </li>
         </ul>
       </div>
   </header>
 
 
-  <div class="container">
-    <section class="col-lg-5">
-
-      Le tournoi NNBRO 2015
+  <div class="container content">
+    <h2>Le tournoi NNBRO 2015</h2>
+    <p>Une journéee mémorable, l'équipe a passé une super journéee</p>
+    <img src="images/Bk5.jpg" class="img-responsive" alt="Basket" width="300" height="200">
   </div>
-  <img src="images/Bk5.jpg" alt="Coupe">
-  </div>
-
-  </section>
-  </div>
-
-
-
-  <footer class="row">
-
-    <div class="col-lg-12">
-
-      Aller UJ
-
-    </div>
-
-  </footer>
-
-
-
-  </div>
-
-
-
 </body>
+
+<script src="cookies.js" type="text/javascript"></script>
+<script type="text/javascript"> checkCookie()</script>
+<script src="deconnexion.js" type="text/javascript"></script>
 
 </html>
