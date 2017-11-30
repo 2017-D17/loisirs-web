@@ -18,7 +18,7 @@
                     <form>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="login" type="text" class="form-control" name="login" placeholder="Login">
+                            <input id="name" type="text" class="form-control" name="name" placeholder="Login">
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -31,24 +31,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            function valid(){
-                var login, password;
-
-                login = document.getElementById("login").value;
-                password = document.getElementById("password").value;
-
-                if(login == null || password == null) {
-
-                    document.getElementById("alert").innerHTML = "Le login ou password est vide";
-
-                }else{
-
-                    var newUser = {"name" : login, "password" : password};
-
-                    $.post("http://loisirs-web-backend.cleverapps.io/users", newUser).then(function(){document.location.href = "home.html"});
-                }
-            }
-        </script>
+        <script src="js/site.js"></script>
     </body>
 </html>
