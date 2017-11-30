@@ -3,5 +3,14 @@ body {
   background-color:#ccc;
   margin-bottom: 60px;
 
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 
+p {
+	margin-left: 20px;
+}
+
+form {
+    display: inline-block;
+    text-align: center;
+}
