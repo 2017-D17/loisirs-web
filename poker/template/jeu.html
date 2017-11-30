@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body onload="checkCookie()">
+<body onload="checkCookie();displayComments(getAllComments());">
 
   <div class="container">
 
@@ -42,6 +42,25 @@
 
     <div class="video-container">
       <iframe width="850" height="480" src="//www.youtube.com/embed/D1ayn4baFhM?rel=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+
+    <commentaires id="commentaires"></commentaires>
+
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea id="message" class="materialize-textarea"></textarea>
+            <label for="message">Commentaires...</label>
+          </div>
+          <button id="comment" class="btn waves-effect waves-light">Commenter
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
     </div>
 
   </div>

@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body onload="checkCookie()">
+<body onload="checkCookie();displayComments(getAllComments());">
 
   <div class="container">
 
@@ -75,6 +75,27 @@
       joueurs qui ne jouent pas beaucoup de mains (par exemple, vous devriez jeter AQ si un joueur fort relance en premier
       de parole). Lorsque des joueurs très faibles se sont engagés dans le pot, n'hésitez pas à suivre et à voir le flop
       avec eux.</p>
+
+
+
+    <commentaires id="commentaires"></commentaires>
+
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea id="message" class="materialize-textarea"></textarea>
+            <label for="message">Commentaires...</label>
+          </div>
+          <button id="comment" class="btn waves-effect waves-light">Commenter
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+    </div>
+
 
 
   </div>

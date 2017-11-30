@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body onload="checkCookie()">
+<body onload="checkCookie();displayComments(getAllComments());">
 
   <div class="container">
 
@@ -45,16 +45,27 @@
       <div class="col s7 offset-s2 ">
         <img class="responsive-img" src="http://www.lirelepoker.com/img/cms/poker%20cowboy_1.jpg">
       </div>
-      <div class="col s6 offset-s2 ">
-        <img class="responsive-img" src="http://www.lirelepoker.com/img/cms/poker%20cowboy_1.jpg">
-      </div>
-      <div class="col s5 offset-s2 ">
-        <img class="responsive-img" src="http://www.lirelepoker.com/img/cms/poker%20cowboy_1.jpg">
-      </div>
-      <div class="col s4 offset-s2 ">
-        <img class="responsive-img" src="http://www.lirelepoker.com/img/cms/poker%20cowboy_1.jpg">
-      </div>
     </div>
+
+
+    <commentaires id="commentaires"></commentaires>
+
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea id="message" class="materialize-textarea"></textarea>
+            <label for="message">Commentaires...</label>
+          </div>
+          <button id="comment" class="btn waves-effect waves-light">Commenter
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+    </div>
+
 
   </div>
 

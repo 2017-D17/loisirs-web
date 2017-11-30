@@ -43,7 +43,6 @@ $('.tab a').on('click', function (e) {
 });
 
 
-// Sending and receiving data in JSON format using POST method
 $('#inscription').on('click', function (e) {
 
     e.preventDefault();
@@ -92,6 +91,7 @@ $('#connexion').on('click', function (e) {
 
         if (trouve) {
             setCookie("userConnected", trouve);
+            setCookie("userName", document.getElementById("name2").value);
             window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
         }
     };
@@ -104,6 +104,7 @@ $('#connexion').on('click', function (e) {
 
 $('#deconnexion').on('click', function (e) {
     setCookie("userConnected", "");
+    setCookie("userName", "");
 });
 
 
@@ -142,9 +143,61 @@ function addMainBlock() {
     if (connected) {
         $("#main1").hide();
         $("#main2").show();
+        window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
     }
     else {
-        $("#main1").show();
         $("#main2").hide();
+        $("#main1").show();
     }
+}
+
+
+$('#comment').on('click', function (e) {
+    e.preventDefault();
+    // Check browser support
+    if (typeof (Storage) !== "undefined") {
+
+        var commentaire = {
+            message: document.getElementById("message").value,
+            user: getCookie("userName"),
+            date: new Date()
+        }
+
+        document.getElementById("message").value = "";
+
+        let comments = getAllComments();
+
+        comments.push(commentaire);
+
+        localStorage.setItem("message", JSON.stringify(comments));
+
+        displayComments(comments);
+    } else {
+        document.getElementById("commentaires").innerHTML = "Sorry, your browser does not support Web Storage...";
+    }
+});
+
+function getAllComments() {
+    var comStr = localStorage.getItem("message");
+    var comments = [];
+    if (comStr) {
+        comments = JSON.parse(comStr)
+    }
+    return comments;
+}
+
+function displayComments(comments) {
+
+    var commentaires = '';
+    comments.forEach(c => {
+        commentaires += `<div class="row">
+                            <div class="col s12">
+                                <div class="card-panel teal">
+                                    <span class="card-title">${c.user} le ${c.date}</span>
+                                    <p class="white-text">${c.message}</p>
+                                </div>
+                            </div>
+                        </div>`;
+    })
+    document.getElementById("commentaires").innerHTML = commentaires;
 }
