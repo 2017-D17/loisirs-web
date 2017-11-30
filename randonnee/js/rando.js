@@ -132,7 +132,7 @@ function login() {
                 createCookie('username',user.name,1);
                 var session = getSession();
                 console.log( "connected" );
-                document.location = "./templates/home.html";
+                document.location = "templates/home.html";
             }else {
                 alert("le mot de passe est incorrect");
             }

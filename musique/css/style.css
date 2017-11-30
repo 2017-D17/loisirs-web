@@ -9,3 +9,8 @@ body {
 p {
 	margin-left: 20px;
 }
+
+form {
+    display: inline-block;
+    text-align: center;
+}
