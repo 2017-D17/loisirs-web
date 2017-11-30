@@ -1,11 +1,18 @@
-const TEMPLATES_URL = "/escalade/templates";
+
+const TEMPLATES_URL = "./templates";
 const FORMS_URL = TEMPLATES_URL + "/formulaire.html";
 const LOISIR_URL = TEMPLATES_URL + "/escalade.html";
 const BACK_URL = 'https://loisirs-web-backend.cleverapps.io/users';
 
 
 $(document).ready(function () {
-    loadInnerHtml(FORMS_URL);
+
+    let logged_in = getCookie('logged_in')
+    if (logged_in === "true") {
+        loadInnerHtml(LOISIR_URL);
+    } else {
+        loadInnerHtml(FORMS_URL);
+    }
 })
 
 function loadInnerHtml(url) {
@@ -29,6 +36,7 @@ function login() {
                 console.log('connected !!!')
 
                 loadInnerHtml(LOISIR_URL);
+                setCookie("logged_in", "true")
             } else {
                 showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
             }
@@ -134,5 +142,26 @@ function initScroll() {
 }
 
 function logout() {
+    setCookie("logged_in", "false")
     loadInnerHtml(FORMS_URL);
+}
+
+function setCookie(cname, cvalue) {
+    document.cookie = cname + "=" + cvalue + ";" + ";path=/escalade/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }

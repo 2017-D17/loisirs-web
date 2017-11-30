@@ -19,7 +19,8 @@ function login() {
           if(data.length > 0 ) {
             if(data[0].password == user.password){
                 console.log( "connected" );
-                window.location.replace("./templates/home.html");
+
+                document.location = "templates/home.html";
             }else {
                 alert("le mot de passe est incorrect");
             }
@@ -54,7 +55,7 @@ function register() {
           if(data.length > 0 && data[0].password == user.password) {
             console.log( "user already exists" );
             alert("Vous êtes déjà inscrits");
-            window.location.replace("index.html");
+            document.location = "templates/home.html";
           } else {
             console.log( "user does not exist" );
             /*insert user into db.json (server) */
