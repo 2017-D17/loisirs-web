@@ -1,4 +1,5 @@
 
+//import * as cookies from '/cookies.js';
 
 function inscription() {
     console.log("inscription en cours")
@@ -9,10 +10,6 @@ function inscription() {
     //url 
     var url = "https://loisirs-web-backend.cleverapps.io/users";
     var url1 = "https://loisirs-web-backend.cleverapps.io/users/?name=" + nom;
-    //cookies
-    import * as cookies from '/cookies.js';
-
-
     //Vérifier si utilisateur est déjà inscrit
     $.get(url1).then(response => {
         if (response.length > 0) {
@@ -22,7 +19,7 @@ function inscription() {
         else {
             $.post(url, { "name": nom, "password": motpass }).then(resp => {
                 console.log(resp)
-                setCookie(username, nom)
+                setCookie("username", nom, 1)
                 location.href = "home.html"
                 alert("Vous êtes inscrit")
             })
