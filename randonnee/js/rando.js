@@ -2,30 +2,49 @@
 var serverUrl = 'https://loisirs-web-backend.cleverapps.io/users';
 
 redirection();
-var currentUrl = document.location.href;
-createCookieIfNotExists("previousUrl",currentUrl,1);
+var relativeUrl = getCurrentRelativeUrl();
+createCookieIfNotExists("previousUrl",relativeUrl,1);
 
 
 /*****************************BACK END FUNCTIONS *****************************/
 
+/* url */
+function getCurrentRelativeUrl() {
+    var currentUrlPathName = window.location.pathname;
+    var splitedUrl = currentUrlPathName.split("/randonnee/");
+    return splitedUrl[1];
+}
+
+
 /* cookies */
 
-/* test if user logged */
+/* test if user logged and redirect page */
 function redirection() {
     var url = readCookie('previousUrl');
-    if(url != window.location.href) {
-        /* test if user logged */
-        var session = getSession();
-        if(session.log_in == null && session.username == null) {
-            document.location = window.location.protocol + "//" + window.location.host+ "/randonnee/index.html";
-            var currentUrl = document.location.href;
-            createCookie("previousUrl",currentUrl,1);
+    var currentRelativeUrl = getCurrentRelativeUrl();
+    console.log('url', url);
+    console.log('relativeUrl', currentRelativeUrl);
+    if(url != currentRelativeUrl) {
+        
+        if(currentRelativeUrl == "index.html" || currentRelativeUrl == "") {
+            var session = getSession();
+            /* test if user logged */
+            if(session.log_in != null && session.username != null) {
+                document.location = "templates/home.html";
+                var currentUrl = getCurrentRelativeUrl();
+                createCookie("previousUrl",currentUrl,1);
+            }
+        } else {
+            /* test if user logged */
+            var session = getSession();
+            if(session.log_in == null && session.username == null) {
+                document.location = "../index.html";
+                var currentUrl = document.location.href;
+                createCookie("previousUrl",currentUrl,1);
+            }
         }
-    } else {
-        // var currentUrl = document.location.href;
-        // createCookie("previousUrl",currentUrl,1);
-    }
-    var currentUrl = document.location.href;
+    } 
+    var currentUrl = getCurrentRelativeUrl();
     createCookie("previousUrl",currentUrl,1);
 }
 
@@ -118,7 +137,7 @@ function login() {
                 createCookie('username',user.name,1);
                 var session = getSession();
                 console.log( "connected" );
-                document.location = "./templates/home.html";
+                document.location = "templates/home.html";
             }else {
                 alert("le mot de passe est incorrect");
             }
