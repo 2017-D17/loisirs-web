@@ -2,14 +2,15 @@
 
 function inscription() {
     console.log("inscription en cours")
-    // Get some values from elements on the page:
-    var $form = $(this);
+    // Get username and password
     var nom = document.getElementById("inputName").value;
     var motpass = document.getElementById("inputPassword").value;
     console.log("name = " + nom + " et passs = " + motpass)
-    // Send the data using post
+    //url 
     var url = "https://loisirs-web-backend.cleverapps.io/users";
     var url1 = "https://loisirs-web-backend.cleverapps.io/users/?name=" + nom;
+    //cookies
+
 
     //Vérifier si utilisateur est déjà inscrit
     $.get(url1).then(response => {
@@ -20,9 +21,11 @@ function inscription() {
         else {
             $.post(url, { "name": nom, "password": motpass }).then(resp => {
                 console.log(resp)
+                setCookie(username, nom)
+                location.href = "home.html"
+                alert("Vous êtes inscrit")
             })
-            location.href = "home.html";
-            alert("Vous êtes inscrit");
+
         }
 
     })
