@@ -10,6 +10,7 @@ function inscription() {
     var url = "https://loisirs-web-backend.cleverapps.io/users";
     var url1 = "https://loisirs-web-backend.cleverapps.io/users/?name=" + nom;
     //cookies
+    import * as cookies from '/cookies.js';
 
 
     //Vérifier si utilisateur est déjà inscrit
