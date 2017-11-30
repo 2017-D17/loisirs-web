@@ -1,4 +1,6 @@
 
+
+
 function register(event) {
     event.preventDefault();
 
@@ -52,7 +54,7 @@ jQuery(function () {
         e.preventDefault()
         if (valid == true)
 
-            location = "/voyage";
+            location = "../voyage/voyage.html";
 
         else
 
