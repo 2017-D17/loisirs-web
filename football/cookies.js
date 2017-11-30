@@ -26,9 +26,17 @@ function checkCookie() {
         console.log(user);
     } else {
         //user = prompt("Please enter your name:", "");
-        location.href = "index.html"
+        location.href = "index.html";
         /*if (user != "" && user != null) {
             setCookie("username", user, 365);
         }*/
     }
-} 
+}
+function checkCookie1() {
+    var user = getCookie("username");
+    if (user != "") {
+        location.href = "home.html";
+    } else {
+        console.log(user);
+    }
+}
