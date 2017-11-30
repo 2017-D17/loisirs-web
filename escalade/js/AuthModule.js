@@ -77,8 +77,11 @@ App.AuthModule = (function () {
             if (url == LOISIR_URL) {
                 App.ClimbModule.initTemplate();
                 App.CommentsModule.addCommentsEvents();
-                $('nav li button').on('click', function () {
+                $('#logout_button').on('click', function () {
                     logout()
+                })
+                $('#messagerie_button').on('click', function () {
+                    App.ChatModule.start()
                 })
             } else {
                 $('#create_button').on('click', function () {
