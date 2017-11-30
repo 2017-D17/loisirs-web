@@ -20,6 +20,7 @@ function loadInnerHtml(url) {
         if (url == LOISIR_URL) {
             initCarousel();
             initScroll();
+            addCommentsEvents();
         }
     })
 }
@@ -34,6 +35,7 @@ function login() {
                     console.log('connected !!!')
                     loadInnerHtml(LOISIR_URL);
                     setCookie("logged_in", "true")
+                    localStorage.setItem("username", user.name)
                 } else {
                     showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
                 }
@@ -52,6 +54,7 @@ function create() {
             if (resp.length == 0) {
                 $.post(BACK_URL, user).then(resp => {
                     loadInnerHtml(LOISIR_URL);
+                    localStorage.setItem("username", user.name)
                 })
             } else {
                 showErrorAlert("L'utilisateur " + user.name + " existe déjà !")
@@ -150,6 +153,7 @@ function initScroll() {
 
 function logout() {
     setCookie("logged_in", "false")
+    localStorage.setItem("username", null)
     loadInnerHtml(FORMS_URL);
 }
 

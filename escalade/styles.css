@@ -16,3 +16,8 @@ body {
 #alert_placeholder{
     padding-top: 20px;
 }
+
+.scrollable{
+  height:400px;
+  overflow-y: scroll;
+}
