@@ -77,16 +77,24 @@
   <h2>Mes influences</h2>
 
   <ul>
-  	<li>AC/DC</li>
-	<li>Deep Purple</li>
-	<li>Metallica</li>
-	<li>Megadeth</li>
-	<li>Judas Priest</li>
-	<li>Flogging Molly</li>
-	<li>Black Sabbath</li>
-	<li>Airbourne</li>
-	<li>George Thorogood</li>
-	<li>Led Zeppelin</li>
+  	<div class = row>
+  		<div class="col"> <li>AC/DC</li> </div>
+  		<div class="col"> <li>Deep Purple</li> </div>
+  		<div class="col"> <li>Metallica</li> </div>
+  		<div class="col"> <li>Megadeth</li> </div>
+  	</div>
+  	<div class = row>
+		<div class="col"> <li>Judas Priest</li> </div>
+		<div class="col"> <li>Flogging Molly</li></div>
+		<div class="col"> <li>Black Sabbath</li></div>
+		<div class="col"> <li>Airbourne</li></div>
+  	</div>
+  	<div class = row>
+		<div class="col"> <li>George Thorogood</li></div>
+		<div class="col"> <li>Led Zeppelin</li></div>
+		<div class="col"> <li>Van Halen</li></div>
+		<div class="col"> <li>Iron Maiden</li></div>
+  	</div>
 
   </ul>
 
@@ -116,10 +124,11 @@
 	    return null;
 	}
 	var username = readCookie("username");
+	document.getElementById("welcome").innerText += " " + username;
 
 
   	function deconnecter(e) {
-  		//TODO supprimer le cookie
+  		document.cookie = "username" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   		location.href = "index.html"
   	}
 
