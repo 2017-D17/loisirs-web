@@ -60,8 +60,16 @@ jQuery(function () {
 
             alert("les champs username et password sont obligatoires")
 
+
     });
 
+
+    $('#deconnexion').click(function (e) {
+
+        setCookie("username", "");
+        setCookie("password", "");
+
+    });
 
 })
 

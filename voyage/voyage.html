@@ -13,6 +13,7 @@
         <script type="text/ecmascript">
 
                 function afficher(formContent) {
+
                         var texteSaisi = formContent.elements['saisie'].value;
                         alert(texteSaisi);
                 }
@@ -23,17 +24,29 @@
                 }
 
                 function createNodesText(formContent) {
+
+
+
                         var texteSaisi = formContent.elements['saisie'].value;
+                        var usernamesaisi = formContent.elements['username'];
+
+
                         var paragraphe = document.createElement('p');
                         paragraphe.append(document.createTextNode(texteSaisi));
 
                         document.getElementById('commentaire').append(paragraphe);
+
+                        var paragraphe1 = document.createElement('input');
+                        paragraphe.append(document.createTextNode(usernamesaisi));
+
+
                 }
         </script>
 </head>
 
 
 <body>
+
 
         <div class="jumbotron text-center">
                 <h1>Voyager</h1>
@@ -56,6 +69,10 @@
                         </div>
                         <div class="col-sm-4">
                                 <a href="#video">Vidéos</a>
+
+                        </div>
+                        <div class="col-sm-5">
+                                <a href="index.html" id="#deconnexion">Déconnexion</a>
 
                         </div>
                 </div>
