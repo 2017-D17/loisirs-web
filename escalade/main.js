@@ -22,6 +22,7 @@ function loadInnerHtml(url) {
         if (url == LOISIR_URL) {
             initCarousel();
             initScroll();
+            addCommentsEvents();
         }
     })
 }
@@ -29,45 +30,47 @@ function loadInnerHtml(url) {
 function login() {
     console.log('login called')
     let user = getJsonFromForm('login');
-    console.log(user)
-    $.get(BACK_URL + '/?name=' + user.name).then(resp => {
-        if (resp && resp[0]) {
-            if (resp[0].password == user.password) {
-                console.log('connected !!!')
-
-                loadInnerHtml(LOISIR_URL);
-                setCookie("logged_in", "true")
+    if (isValid(user)) {
+        $.get(BACK_URL + '/?name=' + user.name).then(resp => {
+            if (resp && resp[0]) {
+                if (resp[0].password == user.password) {
+                    console.log('connected !!!')
+                    loadInnerHtml(LOISIR_URL);
+                    setCookie("logged_in", "true")
+                    localStorage.setItem("username", user.name)
+                } else {
+                    showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
+                }
             } else {
-                showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
+                showErrorAlert("L'utilisateur " + user.name + " n'existe pas !")
             }
-        } else {
-            showErrorAlert("L'utilisateur " + user.name + " n'existe pas !")
-        }
-    })
+        })
+    }
 }
 
 function create() {
     console.log('create called')
     let user = getJsonFromForm('create');
-    console.log(user)
-    $.get(BACK_URL + '/?name=' + user.name).then(resp => {
-        if (resp.length == 0) {
-            $.post(BACK_URL, user).then(resp => {
-                loadInnerHtml(LOISIR_URL);
-            })
-        } else {
-            showErrorAlert("L'utilisateur " + user.name + " existe déjà !")
-        }
-    })
+    if (isValid(user)) {
+        $.get(BACK_URL + '/?name=' + user.name).then(resp => {
+            if (resp.length == 0) {
+                $.post(BACK_URL, user).then(resp => {
+                    loadInnerHtml(LOISIR_URL);
+                    localStorage.setItem("username", user.name)
+                })
+            } else {
+                showErrorAlert("L'utilisateur " + user.name + " existe déjà !")
+            }
+        })
+    }
 }
 
 function getJsonFromForm(str) {
-    let form = document.getElementById(str);
-    var FD = new FormData(form);
-    let obj = {};
-    for (var pair of FD.entries()) {
-        obj[pair[0]] = pair[1];
-    }
+    let obj = {
+        name: $('#' + str + ' input[name="name"]')[0].value,
+        password: $('#' + str + ' input[name="password"]')[0].value
+    };
+    console.log('user created : ', obj)
     return obj;
 }
 
@@ -79,13 +82,22 @@ function showErrorAlert(msg) {
     }, 1000);
 }
 
+function isValid(user) {
+    if (user && user.name && user.password && user.name != "" && user.password != "") {
+        return true;
+    } else {
+        showErrorAlert('Formulaire incomplet')
+        return false;
+    }
+}
+
 function initCarousel() {
 
     let linksToImages = [
         'media/escalade-8.jpg',
         'media/sean-escalade.jpg',
         'https://image.redbull.com/rbcom/010/2015-04-09/1331716034694_2/0012/0/0/240/1799/2939/1500/1/chris-sharma-makes-the-first-ascent-of-el-bon-combat-near-barcelona-spain.jpg',
-        'https://anboto.tok-md.com/argazkiak/RAj/ChinaJam.jpg',
+        'media/news-chinajam-11.jpg',
         'http://www.escalade-lyon.fr/wp-content/uploads/2017/08/P8011763.jpg'
     ]
 
@@ -101,7 +113,7 @@ function initScroll() {
     $(document).on("scroll", onScroll);
 
     let navHeight = $('nav').height();
-    let navOffset = 45;
+    let navOffset = 20;
     console.log('navheight : ', navHeight)
     $('body').css('padding-top')
     $(window).resize(function () {
@@ -143,6 +155,7 @@ function initScroll() {
 
 function logout() {
     setCookie("logged_in", "false")
+    localStorage.setItem("username", null)
     loadInnerHtml(FORMS_URL);
 }
 
