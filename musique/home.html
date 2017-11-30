@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Présentation de mon loisir : les instruments de musique</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" ></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading" id="welcome">Bienvenue</h1>
+      <p class="lead text-muted">Vous voilà dans la partie réservée aux membres du site. Ici, je vais parler du matos que je possède et de ce que je sais jouer ou veux jouer.</p>
+    
+      <button role="button" class="btn-secondary" onclick="deconnecter(event)">Déconnexion</button>
+
+
+
+
+    </div>
+  </section>
+
+<h2 id="guitares">Mes instruments</h2>
+
+	  <div class="album text-muted">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="card" style="width: 20rem; margin: 5px">
+              <img class="card-img-top"" src="img/12cordes.jpg" alt="Card image cap">
+              <div class="card-body">
+              	<h4 class="card-title">Takamine GJ72CE-12NAT</h4>
+    			<ul class="card-text">
+    				<li>Électro-acoustique</li>
+    				<li>12 cordes</li>
+    				<li>Acquisition : Juillet 2017</li>
+    			</ul>
+              </div>
+            </div>
+
+            <div class="card" style="width: 20rem; margin: 5px">
+              <img class="card-img-top"" src="img/cort.jpg" alt="Card image cap">
+              <div class="card-body">
+              	<h4 class="card-title">Cort jesaispluslemodèle</h4>
+    			<ul class="card-text">
+    				<li>Acoustique</li>
+    				<li>6 cordes</li>
+    				<li>Acquisition : Je sais plus</li>
+    			</ul>
+              </div>
+            </div>
+
+            <div class="card" style="width: 20rem; margin: 5px">
+              <img class="card-img-top"" src="img/yamaha.jpg" alt="Card image cap">
+              <div class="card-body">
+              	<h4 class="card-title">Yamaha ERG-121 C</h4>
+    			<ul class="card-text">
+    				<li>Électrique</li>
+    				<li>6 cordes</li>
+    				<li>Acquisition : Février 2010</li>
+    			</ul>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+  <h2>Mes influences</h2>
+
+  <ul>
+  	<li>AC/DC</li>
+	<li>Deep Purple</li>
+	<li>Metallica</li>
+	<li>Megadeth</li>
+	<li>Judas Priest</li>
+	<li>Flogging Molly</li>
+	<li>Black Sabbath</li>
+	<li>Airbourne</li>
+	<li>George Thorogood</li>
+	<li>Led Zeppelin</li>
+
+  </ul>
+
+	<a href="http://tagpower.github.io/spaceinvaders/">Y a ça aussi, si vous vous ennuyez</a>
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+  <script type="text/javascript">
+	function readCookie(name) {
+	    var nameEQ = name + "=";
+	    var ca = document.cookie.split(';');
+	    for(var i=0;i < ca.length;i++) {
+	        var c = ca[i];
+	        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+	        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	    }
+	    return null;
+	}
+	var username = readCookie("username");
+
+
+  	function deconnecter(e) {
+  		//TODO supprimer le cookie
+  		location.href = "index.html"
+  	}
+
+  </script>
+
+</body>
+
+</html>
