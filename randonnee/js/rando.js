@@ -21,6 +21,20 @@ function redirection() {
             var currentUrl = document.location.href;
             createCookie("previousUrl",currentUrl,1);
         }
+        if(window.location.href == window.location.protocol + "//" + window.location.host+ "/randonnee/index.html") {
+            var session = getSession();
+            if(session.log_in != null && session.username != null) {
+                document.location = window.location.protocol + "//" + window.location.host+ "/randonnee/templates/home.html";
+                var currentUrl = document.location.href;
+                createCookie("previousUrl",currentUrl,1);
+            }
+        } else if(window.location.href == window.location.protocol + "//" + window.location.host+ "/randonnee/") {
+            if(session.log_in != null && session.username != null) {
+                document.location = window.location.protocol + "//" + window.location.host+ "/randonnee/templates/home.html";
+                var currentUrl = document.location.href;
+                createCookie("previousUrl",currentUrl,1);
+            }
+        }
     } else {
         // var currentUrl = document.location.href;
         // createCookie("previousUrl",currentUrl,1);
