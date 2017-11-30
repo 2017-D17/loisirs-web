@@ -10,7 +10,28 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/ecmascript">
+
+                function afficher(formContent) {
+                        var texteSaisi = formContent.elements['saisie'].value;
+                        alert(texteSaisi);
+                }
+
+                function effacer(formContent) {
+                        formContent.elements['saisie'].value = "";
+                        return 0;
+                }
+
+                function createNodesText(formContent) {
+                        var texteSaisi = formContent.elements['saisie'].value;
+                        var paragraphe = document.createElement('p');
+                        paragraphe.append(document.createTextNode(texteSaisi));
+
+                        document.getElementById('commentaire').append(paragraphe);
+                }
+        </script>
 </head>
+
 
 <body>
 
@@ -24,7 +45,7 @@
                         <div class="col-sm-4">
                                 <a href="#presentation">Présentation</a>
                                 <center>
-                                        <img src="../img/voyage.jpg" />
+                                        <img src="./img/voyage.jpg" />
                                 </center>
                         </div>
 
@@ -112,6 +133,29 @@
                                 </iframe>
 
                         </center>
+                        <h2>Commentaire</h2>
+
+                        <div id="commentaire"> </div>
+                        <br>
+                        <form id="formulaire">
+
+                                <p>Exprimez-vous </p>
+                                <center>
+                                        <textarea type="text" id="saisie" rows="10" cols="100" value=""></textarea>
+
+
+
+                                        <div class="col-sm-6">
+
+                                                <input type="button" id="button" value="effacer" onclick="effacer(this.form)" />
+
+                                                <input type="button" id="button" value="envoyer" onclick="createNodesText(this.form)">
+
+
+                                        </div>
+                                        <br/>
+                                </center>
+                        </form>
 
 </body>
 
