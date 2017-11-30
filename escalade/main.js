@@ -95,7 +95,7 @@ function initCarousel() {
         'media/escalade-8.jpg',
         'media/sean-escalade.jpg',
         'https://image.redbull.com/rbcom/010/2015-04-09/1331716034694_2/0012/0/0/240/1799/2939/1500/1/chris-sharma-makes-the-first-ascent-of-el-bon-combat-near-barcelona-spain.jpg',
-        'https://anboto.tok-md.com/argazkiak/RAj/ChinaJam.jpg',
+        'media/news-chinajam-11.jpg',
         'http://www.escalade-lyon.fr/wp-content/uploads/2017/08/P8011763.jpg'
     ]
 
@@ -111,7 +111,7 @@ function initScroll() {
     $(document).on("scroll", onScroll);
 
     let navHeight = $('nav').height();
-    let navOffset = 45;
+    let navOffset = 20;
     console.log('navheight : ', navHeight)
     $('body').css('padding-top')
     $(window).resize(function () {

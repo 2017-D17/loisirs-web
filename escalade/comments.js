@@ -13,7 +13,7 @@ if (!window.indexedDB) {
 const dbName = "Comments";
 let db = new Dexie("comments_database");
 db.version(1).stores({
-    comments: '++id,name,text,date'
+    comments: '++id,name,text,date,timestamp'
 });
 
 function addCommentsEvents() {
@@ -22,11 +22,18 @@ function addCommentsEvents() {
         ($(this).val() === "") ? $("#comments_textarea button").prop("disabled", true) : $("#comments_textarea button").prop("disabled", false);
     })
     $("#comments_textarea button").on("click", () => {
-        console.log("saving the comment : ")
+        let comm = $("#inputComment").val();
+        if (comm === "") { return }
+        $("#inputComment").val("");
+        $("#comments_textarea button").prop("disabled", true)
+        console.log("saving the comment : ", comm)
+        let today = new Date()
+        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', 'second': '2-digit' };
         let comment = {
-            text: $("#inputComment").val(),
+            text: comm,
             name: localStorage.getItem("username"),
-            date: new Date().toLocaleDateString()
+            date: today.toLocaleDateString('fr-FR', options),
+            timestamp: today.getTime()
         }
         db.comments.add(comment).then(
             updateCommentsView(comment)
@@ -35,17 +42,19 @@ function addCommentsEvents() {
 }
 
 function updateCommentsView(comment) {
-    $(`<div class="list-group-item list-group-item-action flex-column align-items-start">
-<div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">`+ comment.name + `</h5>
-    <small>`+ comment.date + `</small>
-</div>
-<p class="mb-1">`+ comment.text + `</p>
-</div>`).appendTo('#comments_section')
+    $('#comments_section').prepend(
+        `<div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">`+ comment.name + `</h5>
+                <small>`+ comment.date + `</small>
+            </div>
+        <p class="mb-1">`+ comment.text + `</p>
+        </div>`
+    )
 }
 
 function initCommentsView() {
-    db.comments.each((comment) => {
+    db.comments.orderBy("timestamp").each((comment) => {
         updateCommentsView(comment)
     })
 }
