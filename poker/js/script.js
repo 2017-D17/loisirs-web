@@ -91,8 +91,7 @@ $('#connexion').on('click', function (e) {
         }
 
         if (trouve) {
-            alert("Tu est bien connecté !");
-            setCookie("userConnected", trouve, 30);                
+            setCookie("userConnected", trouve);
             window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
         }
     };
@@ -104,17 +103,15 @@ $('#connexion').on('click', function (e) {
 
 
 $('#deconnexion').on('click', function (e) {
-    
-    setCookie("userConnected", "", 30);      
-    
+    setCookie("userConnected", "");
 });
 
 
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/poker/";
+    document.cookie = cname + "=" + cvalue + ";path=/poker/";
 }
 
 function getCookie(cname) {
@@ -134,38 +131,15 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-    console.log("check check check");
     var connected = getCookie("userConnected");
     if (!connected) {
         window.location.replace("http://127.0.0.1:8080/poker");
     }
 }
 
-/*function addMainBlock() {
-
-    var connected = getCookie("userConnected");
-
-    $("#main").empty();
-
-    if (connected) {
-        $.get("template/formOut.html").then(resp => {
-            document.getElementById('main').innerHTML = resp;
-        })
-    }
-
-    else {
-        $.get("template/formIn.html").then(resp => {
-            document.getElementById('main').innerHTML = resp;
-        })
-    }
-}*/
-
-
 function addMainBlock() {
-
     var connected = getCookie("userConnected");
-
-    if (connected=="true") {
+    if (connected) {
         $("#main1").hide();
         $("#main2").show();
     }
