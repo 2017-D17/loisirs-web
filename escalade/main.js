@@ -27,44 +27,45 @@ function loadInnerHtml(url) {
 function login() {
     console.log('login called')
     let user = getJsonFromForm('login');
-    console.log(user)
-    $.get(BACK_URL + '/?name=' + user.name).then(resp => {
-        if (resp && resp[0]) {
-            if (resp[0].password == user.password) {
-                console.log('connected !!!')
-                loadInnerHtml(LOISIR_URL);
-                setCookie("logged_in", "true")
+    if (isValid(user)) {
+        $.get(BACK_URL + '/?name=' + user.name).then(resp => {
+            if (resp && resp[0]) {
+                if (resp[0].password == user.password) {
+                    console.log('connected !!!')
+                    loadInnerHtml(LOISIR_URL);
+                    setCookie("logged_in", "true")
+                } else {
+                    showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
+                }
             } else {
-                showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
+                showErrorAlert("L'utilisateur " + user.name + " n'existe pas !")
             }
-        } else {
-            showErrorAlert("L'utilisateur " + user.name + " n'existe pas !")
-        }
-    })
+        })
+    }
 }
 
 function create() {
     console.log('create called')
     let user = getJsonFromForm('create');
-    console.log(user)
-    $.get(BACK_URL + '/?name=' + user.name).then(resp => {
-        if (resp.length == 0) {
-            $.post(BACK_URL, user).then(resp => {
-                loadInnerHtml(LOISIR_URL);
-            })
-        } else {
-            showErrorAlert("L'utilisateur " + user.name + " existe déjà !")
-        }
-    })
+    if (isValid(user)) {
+        $.get(BACK_URL + '/?name=' + user.name).then(resp => {
+            if (resp.length == 0) {
+                $.post(BACK_URL, user).then(resp => {
+                    loadInnerHtml(LOISIR_URL);
+                })
+            } else {
+                showErrorAlert("L'utilisateur " + user.name + " existe déjà !")
+            }
+        })
+    }
 }
 
 function getJsonFromForm(str) {
-    let form = document.getElementById(str);
-    var FD = new FormData(form);
-    let obj = {};
-    for (var pair of FD.entries()) {
-        obj[pair[0]] = pair[1];
-    }
+    let obj = {
+        name: $('#' + str + ' input[name="name"]')[0].value,
+        password: $('#' + str + ' input[name="password"]')[0].value
+    };
+    console.log('user created : ', obj)
     return obj;
 }
 
@@ -74,6 +75,15 @@ function showErrorAlert(msg) {
     setTimeout(() => {
         $('#error-alert').alert('close')
     }, 1000);
+}
+
+function isValid(user) {
+    if (user && user.name && user.password && user.name != "" && user.password != "") {
+        return true;
+    } else {
+        showErrorAlert('Formulaire incomplet')
+        return false;
+    }
 }
 
 function initCarousel() {
