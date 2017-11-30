@@ -178,15 +178,116 @@ function register() {
 /* Comments */
 
 function createCommentTemplate(userName,dateTime,comment) {
-    return template = "<div style=\"margin-bottom: 25px\" class=\"input-group\"><span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>
-                    <div class=\"form-control comment-div\"><div class=\"commentHeader\"><p style=\"position: absolute; font-weight: bold;\" class=\"panel-title\">" + username + "</p>
-                    <p style=\"right: 22; position: absolute;\" class=\"panel-title\">" + dateTime + "</p>
-                    </div><p style=\"margin-top: 30px;\">" + comment + "</p></div></div>"
+    return template = "<div style=\"margin-bottom: 25px\" class=\"input-group\"><span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\">"+
+    "</i></span><div class=\"form-control comment-div\"><div class=\"commentHeader\"><p style=\"position: absolute; font-weight: bold;\" class=\"panel-title\">" 
+    + userName + "</p><p style=\"right: 22px; position: absolute;\" class=\"panel-title\">" + dateTime + "</p></div><p style=\"margin-top: 30px;\">" + comment + "</p></div></div>";
 }
 
-function addComment() {
-    var message = 
+function addComment(page) {
+    var message = $('#message').val();
+    if(message != null) {
+        var date = getDate();
+        var session = getSession();
+        var username = session.username;
+        var comment = {
+            username: username,
+            date: date,
+            message: message
+        };
+        var comments = [];
+        switch(page) {
+            case "home": 
+                if(JSON.parse(localStorage.getItem('homeComments')) != null) {
+                    comments = JSON.parse(localStorage.getItem('homeComments'));
+                }
+                comments.push(comment);
+                localStorage.setItem('homeComments',JSON.stringify(comments));
+            break;
+            case "material": 
+                if(JSON.parse(localStorage.getItem('materialComments')) != null) {
+                    comments = JSON.parse(localStorage.getItem('materialComments'));
+                }
+                comments.push(comment);
+                localStorage.setItem('materialComments',JSON.stringify(comments));
+            break;
+        }
+
+
+        
+    } else {
+        alert("Aucun commentaire n'est saisi");
+    }
+    getComments(page);
+    $('#message').val("");
+    
 }
+
+function storageAvailable(type) {
+    try {
+        var storage = window[type],
+            x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            storage.length !== 0;
+    }
+}
+
+function getComments(page) {
+    if (storageAvailable('localStorage')) {
+        $('#commentsList').empty();
+        var comments = [];
+        switch(page) {
+            case "home": comments = JSON.parse(localStorage.getItem('homeComments'));
+            break;
+            case "material": comments = JSON.parse(localStorage.getItem('materialComments'));
+            break;
+        }
+        if(comments != null) {
+              for(var i=0;i<comments.length;i++) {
+                  var template = createCommentTemplate(comments[i].username,comments[i].date,comments[i].message);
+                  $('#commentsList').append(template);
+                }
+        }
+    }
+    else {
+      // Too bad, no localStorage for us
+      alert('pas de localStorage sur ce navigateur!');
+    }
+}
+
+function getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth(); //January is 0!
+    var yyyy = today.getFullYear();
+    var hh = today.getHours();
+    var min = today.getMinutes();
+    var sec = today.getSeconds();
+
+    if(dd<10) {
+        dd = '0'+dd
+    } 
+
+    var month = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Décembre'];
+
+    today = dd + ' ' + month[mm] + ' ' + yyyy + ' ' + hh + ':' + min + ':' + sec ;
+    return today;
+}
+
 
 /***************************** FRONT END FUNCTIONS *****************************/
 
