@@ -23,11 +23,12 @@ function getCookie(cname) {
 function checkCookie() {
     var user = getCookie("username");
     if (user != "") {
-        alert("Welcome again " + user);
+        console.log(user);
     } else {
-        user = prompt("Please enter your name:", "");
-        if (user != "" && user != null) {
+        //user = prompt("Please enter your name:", "");
+        location.href = "index.html"
+        /*if (user != "" && user != null) {
             setCookie("username", user, 365);
-        }
+        }*/
     }
 } 
