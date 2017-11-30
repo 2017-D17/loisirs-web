@@ -175,6 +175,18 @@ function register() {
 }
 
 
+/* Comments */
+
+function createCommentTemplate(userName,dateTime,comment) {
+    return template = "<div style=\"margin-bottom: 25px\" class=\"input-group\"><span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>
+                    <div class=\"form-control comment-div\"><div class=\"commentHeader\"><p style=\"position: absolute; font-weight: bold;\" class=\"panel-title\">" + username + "</p>
+                    <p style=\"right: 22; position: absolute;\" class=\"panel-title\">" + dateTime + "</p>
+                    </div><p style=\"margin-top: 30px;\">" + comment + "</p></div></div>"
+}
+
+function addComment() {
+    var message = 
+}
 
 /***************************** FRONT END FUNCTIONS *****************************/
 
