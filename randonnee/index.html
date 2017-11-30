@@ -62,8 +62,7 @@
 		                                    <!-- Button -->
 
 		                                    <div class="col-sm-12 controls">
-		                                      <a id="btn-login" href="#" onclick='return login()' class="btn btn-success">Je me connecte  </a>
-
+		                                       <button id="btn-login" type="button" onclick='login()' class="btn btn-success"><i class="icon-hand-right"></i> &nbsp Je me connecte</button>
 		                                    </div>
 		                                </div>
 
@@ -72,7 +71,7 @@
 		                                    <div class="col-md-12 control">
 		                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
 		                                            Vous n'avez pas de compte! 
-		                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+		                                        <a href="#" onClick="event.preventDefault(); $('#loginbox').hide(); $('#signupbox').show()">
 		                                           Inscrivez-vous ici
 		                                        </a>
 		                                        </div>
