@@ -1,5 +1,4 @@
 var App = App || {};
-console.log('App in ChatModule :', App)
 
 App.ChatModule = (function () {
     var messageSocket = null;
@@ -19,7 +18,7 @@ App.ChatModule = (function () {
         messageSocket = new WebSocket(WEBSOCKET_URL_PROD)
         messageSocket.onopen = function (event) {
             console.log('messageSocket open')
-            $("#messageriebutton").prop("disabled", false)
+            $("#messagerie_button").prop("disabled", false)
             registerModalEvents()
         };
 

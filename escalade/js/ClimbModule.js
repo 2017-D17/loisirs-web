@@ -1,5 +1,4 @@
 var App = App || {};
-console.log('App in ClimbModule :', App)
 App.ClimbModule = (function () {
     var LOISIR_URL = "./templates/escalade.html";
 
@@ -21,6 +20,7 @@ App.ClimbModule = (function () {
             initTemplate();
             App.CommentsModule.start();
             App.ChatModule.start();
+            App.GeoLocModule.start();
         })
     }
 
