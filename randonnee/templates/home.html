@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Rando Passion</title>
+	<base href="./"></base>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/rando.js"></script>
+</head>
+
+<body>
+	<div class="header">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="logo">
+				<a class="navbar-brand" href="home.html">
+							<img src="../img/logo.png" alt="logo" width="50" height="50">
+				</a>
+			</div>
+			 <div class="container-fluid">
+				    <div class="navbar-header">
+					 <a class="navbar-brand" href="home.html">Rando Passion</a>
+				    </div>
+				    <ul  id="randoNavbar" class="nav navbar-nav">
+					      <li><a href="home.html">Accueil</a></li>
+					      <li><a href="material.html">Matériel</a></li>
+					      <li><a id="deconnection" href="#" onclick='deconnection();return false'>Déconnexion</a></li>
+				    </ul>
+			  </div>
+		</nav>
+		
+	</div>
+
+	<div class="content">
+		<div class ="content-title">
+			<h1>La Randonnée: un sport, une passion</h1>	
+		</div>
+		<div class="text-content text-center home">
+			<p>La randonnée se différencie de la promenade ou balade de part la distance parcourue et l'effort physique effectué. Il s'agit d'une activité de plein air qui se pratique seule ou en groupe.</p>
+			<p>C'est à la fois un loisir de découverte et une forme d'épanouissement de soi, tout en étant un sport facilement accessible et praticable.</p>
+		</div>
+
+		<div class="container">
+			<br>
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<li data-target="#myCarousel" data-slide-to="3"></li>
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+
+					<div class="item active">
+						<img src="../img/materiel.jpg" alt="materiel" width="700" height="345">
+						<div class="carousel-caption">
+						</div>
+					</div>
+
+					<div class="item">
+						<img src="../img/monts-darree-pano.jpg" alt="Flower" width="700" height="345">
+						<div class="carousel-caption">
+						</div>
+					</div>
+
+					<div class="item">
+						<img src="../img/monts_dArree.jpg" alt="Flower" width="700" height="345">
+						<div class="carousel-caption">
+						</div>
+					</div>
+
+					<div class="item">
+						<img src="../img/pano-rando.jpg" alt="Flower" width="700" height="345">
+						<div class="carousel-caption">
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Précédent</span>
+				</a>
+				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Suivant</span>
+				</a>
+			</div>
+		</div>
+		
+
+	</div>
+
+	<footer class="navbar-default navbar-fixed-bottom">
+	  <div class="container-fluid">
+	    <small class="copyright"><a class="white" href="/">© 2017 Sandra</a></small>
+	  </div>
+	</footer>
+	
+
+
+
+</body>
+
+</html> 

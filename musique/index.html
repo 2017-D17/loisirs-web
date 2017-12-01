@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Instruments de musique</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" ></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">La musique c'est fantastique</h1>
+      <p class="lead text-muted">Salut, Tagpower here. Bon j'suis désolé, j'ai pas trop d'inspi ce matin. Du coup j'espère que vous m'en voudrez pas si je parle tout le temps des mêmes trucs ?</p>
+
+
+
+    </div>
+  </section>
+
+  <h2>Inscription</h2>
+<!-- http://loisirs-web-backend.cleverapps.io/users -->
+  <form class="form-inline justify-content-center" method="get">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="nom" class="form-control" id="ins_nom">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Mot de passe :</label>
+      <input type="password" class="form-control" id="ins_pwd">
+    </div>
+    <button class="btn btn-primary" onclick="inscription(event)">Soumettre</button>
+    <label id="ins_result"> </label>
+  </form> 
+
+  <br>
+
+  <h2>Connexion</h2>
+<!-- http://loisirs-web-backend.cleverapps.io/users -->
+  <form class="form-inline justify-content-center" method="get">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="nom" class="form-control " id="con_nom">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Mot de passe :</label>
+      <input type="password" class="form-control" id="con_pwd">
+    </div>
+    <button class="btn btn-primary" onclick="connexion(event)">Soumettre</button>
+    <label id="con_result"></label>
+  </form> 
+
+  <br>
+
+
+
+
+
+	<h2 id="guitares">Guitare</h2>
+
+	  <div>
+        <h4>Guitare à 12 cordes</h4>
+
+        <p>La <b>guitare à douze cordes</b> est une guitare qui produit un son plus brillant et plus riche en harmoniques que la guitare standard à six cordes, grâce au doublage de chaque corde.</p>
+    </div>
+
+
+
+	<h2 id="orgue">Orgue</h2>
+
+	<audio controls id="audioPlayer" style="margin-left: 1cm">
+		<source src="extraitHammond.ogg"/>
+	</audio>
+	<br>
+
+  <p>L'<b>orgue Hammond</b> est un instrument électromécanique inventé dans les années 1930 par Laurens Hammond. Il s'inspire de l'orgue traditionnel et était initialement destiné à équiper des églises n'ayant pas la place ou les moyens financiers pour disposer d'un orgue à tuyaux.</p>
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/Pi_gwED-gQw" frameborder="" allowfullscreen style="display: block; margin-left: auto; margin-right: auto"></iframe>
+  <br>
+
+
+
+</body>
+
+</html>

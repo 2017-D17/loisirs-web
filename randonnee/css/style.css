@@ -1,0 +1,108 @@
+html,body {
+	width: 100%;
+	height: 100%;
+	    background: antiquewhite;
+}
+
+.header {
+	width: 100%;
+    height: 8%;
+}
+
+.content-title {
+	width: 100%;
+	height: 5%;
+	margin-right: 20px;
+	margin-left: 20px;
+	text-align: center;
+}
+
+.content {
+	margin-right: 20%;
+	margin-left: 20%;
+
+}
+
+.home {
+	font-size: 20px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-content {
+	margin-top: 40px;
+	font-size: 17px;
+}
+
+.container {
+	margin-top: 20px;
+	width: 100%;
+	top: 20px;
+	display: flex;
+
+}
+#myCarousel {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.footer {
+	padding: 15px 0;
+    background: black;
+    color: white !important;
+
+}
+
+.navbar-default {
+    background-color: black;
+    border-color: white;
+    text-align: center;
+}
+
+.center-div {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+
+.activedButton {
+	color: #fff;
+    background-color: #080808
+}
+
+
+.panel-info>.panel-heading {
+    color: #9d9d9d;
+    background-color: #222;
+    border-color: #222;
+}
+
+a {
+    color: #9d9d9d;
+    text-decoration: none;
+}
+
+
+.btn-success, .btn-info {
+    color: #fff;
+    background-color: dimgrey;
+    border-color: black;
+}
+
+.btn-success:hover, .btn-info:hover {
+	color: #fff;
+    background-color: black;
+    border-color: dimgrey;
+}
+
+.btn-success:focus, .btn-info:focus {
+    color: #fff;
+    background-color: black;
+    border-color: dimgrey;
+}
+
+.white-hover-a:hover {
+	color: white;
+}
