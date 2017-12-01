@@ -19,6 +19,10 @@ App.CommentsModule = (function () {
     db.version(1).stores({
         comments: '++id,name,text,date,timestamp'
     });
+
+    var start = function () {
+        addCommentsEvents()
+    }
     var addCommentsEvents = function () {
         initCommentsView();
         $("#inputComment").on("input propertychange", function () {
@@ -61,5 +65,5 @@ App.CommentsModule = (function () {
             updateCommentsView(comment)
         })
     }
-    return { addCommentsEvents }
+    return { start }
 })()

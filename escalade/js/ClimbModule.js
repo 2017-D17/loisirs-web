@@ -1,9 +1,27 @@
 var App = App || {};
 console.log('App in ClimbModule :', App)
 App.ClimbModule = (function () {
+    var LOISIR_URL = "./templates/escalade.html";
+
     var initTemplate = function () {
+        $('#logout_button').on('click', function () {
+            logout()
+        })
         initCarousel()
         initScroll()
+    }
+    var logout = function () {
+        localStorage.setItem("username", null)
+        location.href = '/escalade'
+    }
+    var start = function () {
+        var body = '';
+        $.get(LOISIR_URL).then(resp => {
+            document.querySelector('main').innerHTML = resp;
+            initTemplate();
+            App.CommentsModule.start();
+            App.ChatModule.start();
+        })
     }
 
     var initCarousel = function () {
@@ -69,5 +87,5 @@ App.ClimbModule = (function () {
 
     };
 
-    return { initTemplate }
+    return { start }
 })()
