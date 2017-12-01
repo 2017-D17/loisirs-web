@@ -1,11 +1,9 @@
-var URL = "http://loisirs-web-backend.cleverapps.io/users";
-var name;
-var password;
+var URL = "https://loisirs-web-backend.cleverapps.io/users";
 
 function valid() {
 
-    name = document.getElementById("name").value;
-    password = document.getElementById("password").value;
+    var name = document.getElementById("name").value;
+    var password = document.getElementById("password").value;
 
     if (name == "" || password == "") {
 
@@ -15,69 +13,61 @@ function valid() {
 
         var newUser = { "name": name, "password": password };
 
-        $.post(URL, newUser).then(function () { document.location.href = "./home.html" });
+        $.post(URL, newUser).then(function () { document.location.href = "home.html"; });
     }
 }
 
 function checkInfos() {
 
-    name = document.getElementById("name").value;
-    password = document.getElementById("password").value;
+   var name = document.getElementById("name").value;
+   var password = document.getElementById("password").value;
+   var cookie = getCookie("name");
 
-    if(getCookie("name") != "") {
+    if (cookie == "") {
 
-        document.location = "./Series/home.html";
-        alert(document.location);
-    } else {
-        alert("passe");
-        createCookie("name", name, 1);
-
-        if(name == "" || password == "") {
+        if (name == "" || password == "") {
 
             document.getElementById("alert").innerHTML = "Renseignez les champs !";
 
         } else {
 
-            $.getJSON(URL + "/?name=" + login + "&password=" + password, function (result) {
-                
-                if(result[0].name == "" || result[0].password == "") {
+            $.getJSON(URL + "/?name=" + name + "&password=" + password).then(result => {
+               
+                if (result[0].name == "" || result[0].password == "") {
 
                     document.getElementById("alert").innerHTML = "Saisissez tous les champs !";
 
-                } else if(result[0].name == name && result[0].password == password) {
-
-                    createCookie("name", name, 1);
-
-                    document.location = "./Series/home.html";
-
-                } else {
+                } else if(result[0].name != name || result[0].password != password){
 
                     document.getElementById("alert").innerHTML = "Not found! Login ou password incorrecte";
 
+                }else{
+
+                    createCookie("name", name, 1); 
+                    document.location.href = "home.html";
                 }
             });
         }
+    }else{
+        document.location.href = "home.html";
     }
-
-
 }
 
 function logOut() {
 
-    alert(document.cookie);
     eraseCookie("name");
-    alert(document.cookie);
-
     document.location.href = "index.html";
 }
 
 function createCookie(key, value, days) {
+    var expires;
     if (days) {
         var date = new Date();
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        var expires = "; expires=" + date.toGMTString();
+        expires = "; expires=" + date.toGMTString();
+    }else{ 
+        expires = "";
     }
-    else var expires = "";
     document.cookie = key + "=" + value + expires + "; path=/";
 }
 
