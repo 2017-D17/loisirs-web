@@ -20,7 +20,7 @@
                 <a class="nav-link" href="#commentaires">Commentaires</a>
             </li>
             <li class="nav-item">
-                <button type="button" class="btn btn-success" id="messagerie_button">Messagerie</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#messagerieModal" id="messagerie_button">Messagerie</button>
             </li>
         </ul>
         <li class="nav nav-item">
@@ -109,4 +109,35 @@
             </div>
         </div>
     </section>
+</div>
+
+<!-- Messagerie Modal -->
+<div class="modal fade" id="messagerieModal" tabindex="-1" role="dialog" aria-labelledby="messagerieModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="messagerieModalLabel">Chat App</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                    <div id="messages_section" class="scrollable list-group">
+                        <!-- New messages appear here -->
+                    </div>
+                </div>
+
+                <div id="message_textarea" class="list-group-item flex-column align-items-start">
+                    <div class="form-group">
+                        <textarea name="comment" type="text" class="form-control" id="inputMessage" placeholder="Votre message"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" id="sendMsg" disabled>Envoyer</button>
+            </div>
+        </div>
+    </div>
 </div>
