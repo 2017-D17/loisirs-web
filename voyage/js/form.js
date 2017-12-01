@@ -51,23 +51,33 @@ jQuery(function () {
     });
 
     $("#button").click(function (e) {
+
         e.preventDefault()
+        valid == false;
         if (valid == true)
 
             location = "../voyage/voyage.html";
+
 
         else
 
             alert("les champs username et password sont obligatoires")
 
+        if (valid) {
+            setCookie("userConnected", valid);
+            setCookie("userName", document.getElementById("username").value);
+            window.location.replace("http://127.0.0.1:8080/voyage/voyage.html");
+        }
+
 
     });
 
 
-    $('#deconnexion').click(function (e) {
+    $("#deconnexion").click(function (e) {
 
-        setCookie("username", "");
-        setCookie("password", "");
+        setCookie("userConnected", "");
+        setCookie("userName", "");
+
 
     });
 
@@ -81,7 +91,7 @@ function setCookie(cname, cvalue) {
 }
 
 function getCookie(cname) {
-    var name = cname + "=";
+    var username = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
     for (var i = 0; i < ca.length; i++) {
@@ -89,8 +99,8 @@ function getCookie(cname) {
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+        if (c.indexOf(username) == 0) {
+            return c.substring(username.length, c.length);
         }
     }
     return "";
