@@ -10,10 +10,10 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="assets/css/form-elements.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,7 +59,7 @@
 	                        		</div>
 	                            </div>
 	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="login-form">
+				                    <form id="login-form" role="form" action="" method="post" class="login-form">
 				                    	<div class="form-group">
 				                    		<label class="sr-only" for="form-user-name">Username</label>
 				                        	<input type="text" name="form-user-name" placeholder="Username..." class="form-username form-control" id="form-username">
@@ -92,18 +92,18 @@
 	                        		</div>
 	                            </div>
 	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="registration-form">
+				                    <form id="registration-form" role="form" action="" method="post" class="registration-form">
 				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-user-name">Username</label>
-				                        	<input type="text" name="form-user-name" placeholder="Username..." class="form-first-name form-control" id="form-first-name">
+				                    		<label class="sr-only" for="reg-form-user-name">Username</label>
+				                        	<input type="text" name="reg-form-user-name" placeholder="Username..." class="form-first-name form-control" id="reg-form-user-name">
 				                        </div>
 				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password">Password</label>
-				                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+				                        	<label class="sr-only" for="reg-form-password">Password</label>
+				                        	<input type="password" name="reg-form-password" placeholder="Password..." class="form-password form-control" id="reg-form-password">
 				                        </div>
 				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-confirm-password">Password</label>
-				                        	<input type="password" name="form-confirm-password" placeholder="Confirm password..." class="form-password form-control" id="form-password">
+				                        	<label class="sr-only" for="reg-form-confirm-password">Password</label>
+				                        	<input type="password" name="reg-form-confirm-password" placeholder="Confirm password..." class="form-password form-control" id="reg-form-confirm-password">
 				                        </div>
 				                        <button type="submit" class="btn">S'inscrire!</button>
 				                    </form>
@@ -122,8 +122,11 @@
         <script src="assets/js/jquery-1.11.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
-        
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+		<script src="assets/js/scripts.js"></script>
+
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->

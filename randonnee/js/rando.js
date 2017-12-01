@@ -2,8 +2,8 @@
 var serverUrl = 'https://loisirs-web-backend.cleverapps.io/users';
 
 redirection();
-var relativeUrl = getCurrentRelativeUrl();
-createCookieIfNotExists("previousUrl",relativeUrl,1);
+// var relativeUrl = getCurrentRelativeUrl();
+// createCookieIfNotExists("previousUrl",relativeUrl,1);
 
 
 /*****************************BACK END FUNCTIONS *****************************/
@@ -39,7 +39,7 @@ function redirection() {
             var session = getSession();
             if(session.log_in == null && session.username == null) {
                 document.location = "../index.html";
-                var currentUrl = document.location.href;
+                var currentUrl = getCurrentRelativeUrl();
                 createCookie("previousUrl",currentUrl,1);
             }
         }
@@ -47,6 +47,7 @@ function redirection() {
     var currentUrl = getCurrentRelativeUrl();
     createCookie("previousUrl",currentUrl,1);
 }
+
 
 
 /* get session from cookies */
@@ -67,7 +68,7 @@ function createCookie(name,value,days) {
         var expires = "; expires="+date.toGMTString();
     }
     else var expires = "";
-    document.cookie = name+"="+value+expires+"; path=/randonnee";
+    document.cookie = name+"="+value+expires+"; path=/";
 }
 
 function createCookieIfNotExists(name,value,days) {
@@ -81,7 +82,7 @@ function createCookieIfNotExists(name,value,days) {
         else {
             var expires = "";
         } 
-        document.cookie = name+"="+value+expires+"; path=/randonnee";
+        document.cookie = name+"="+value+expires+"; path=/";
     }
 }
 
@@ -111,7 +112,6 @@ function eraseCookie(name) {
 
 /* deconnexion */
 function deconnection(){
-    event.preventDefault();
     eraseCookie('log_in');
     eraseCookie('username');
     document.location = "../index.html";
@@ -120,7 +120,6 @@ function deconnection(){
 /* login function */
 function login() {
     console.log('login');
-    event.preventDefault();
     /* get params from form */
     var user = {
         name: $('input[name="username"]').val(),
