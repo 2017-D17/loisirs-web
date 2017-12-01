@@ -1,6 +1,6 @@
 
-/* Logout */
-var PageRedirection = (function(){
+/* Redirection */
+var PageRedirectionModule = (function(){
     var self = {};
 
     //methodes publiques
@@ -44,9 +44,9 @@ var PageRedirection = (function(){
 })();
 
 
-/* cookies */
+/* Cookies */
 
-var Cookies = (function(){
+var CookiesModule = (function(){
     var self = {};
 
     //methodes publiques
@@ -102,7 +102,7 @@ var Cookies = (function(){
 })();
 
 /* Session */
-var Session = (function(){
+var SessionModule = (function(){
     var self = {};
 
     //methodes publiques
@@ -119,7 +119,7 @@ var Session = (function(){
 })();
 
 /* Login */
-var Login = (function(){
+var LoginModule = (function(){
     var self = {};
 
     //methodes publiques
@@ -138,9 +138,9 @@ var Login = (function(){
               console.log( "Data Loaded: ", data );
               if(data.length > 0 ) {
                 if(data[0].password == user.password){
-                    Cookies.createCookie('log_in','true',1);
-                    Cookies.createCookie('username',user.name,1);
-                    var session = Session.getSession();
+                    CookiesModule.createCookie('log_in','true',1);
+                    CookiesModule.createCookie('username',user.name,1);
+                    var session = SessionModule.getSession();
                     console.log( "connected" );
                     document.location = "templates/home.html";
                 }else {
@@ -163,14 +163,14 @@ return self;
 })();
 
 /* Logout */
-var Logout = (function(){
+var LogoutModule = (function(){
     var self = {};
 
     //methodes publiques
 
     self.deconnection = function(){
-        eraseCookie('log_in');
-        eraseCookie('username');
+        CookiesModule.eraseCookie('log_in');
+        CookiesModule.eraseCookie('username');
         document.location = "../index.html";
         return false;
     }
@@ -178,8 +178,8 @@ var Logout = (function(){
     return self;
 })();
 
-/* Logout */
-var Register = (function(){
+/* Register */
+var RegisterModule = (function(){
     var self = {};
 
     //methodes publiques
@@ -207,8 +207,8 @@ var Register = (function(){
                         console.log( "user does not exist" );
                         /*insert user into db.json (server) */
                         $.post( serverUrl, user).done(function( data ) {
-                            createCookie('log_in','true',1);
-                            createCookie('username',user.name,1);
+                            CookiesModule.createCookie('log_in','true',1);
+                            CookiesModule.createCookie('username',user.name,1);
                             document.location = "templates/home.html";
                         }).fail(function() {
                             console.log( "error post" );
@@ -221,6 +221,176 @@ var Register = (function(){
         } else {
             alert('tous les champs doivent être saisis');
         }
+    }
+
+    return self;
+})();
+
+/* Storage */
+var StorageModule = (function(){
+    var self = {};
+
+    //methodes publiques
+
+    self.storageAvailable = function(type){
+        try {
+            var storage = window[type],
+                x = '__storage_test__';
+            storage.setItem(x, x);
+            storage.removeItem(x);
+            return true;
+        }
+        catch(e) {
+            return e instanceof DOMException && (
+                // everything except Firefox
+                e.code === 22 ||
+                // Firefox
+                e.code === 1014 ||
+                // test name field too, because code might not be present
+                // everything except Firefox
+                e.name === 'QuotaExceededError' ||
+                // Firefox
+                e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+                // acknowledge QuotaExceededError only if there's something already stored
+                storage.length !== 0;
+        }
+    };
+
+    return self;
+})();
+
+/* Comments */
+var CommentsModule = (function(){
+    var self = {};
+
+    //methodes publiques
+
+    self.createCommentTemplate = function(userName,dateTime,comment) {
+        return template = "<div style=\"margin-bottom: 25px\" class=\"input-group\"><span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\">"+
+        "</i></span><div class=\"form-control comment-div\"><div class=\"commentHeader\"><p style=\"position: absolute; font-weight: bold;\" class=\"panel-title\">" 
+        + userName + "</p><p style=\"right: 22px; position: absolute;\" class=\"panel-title\">" + dateTime + "</p></div><p style=\"margin-top: 30px;\">" + comment + "</p></div></div>";
+    };
+
+    self.addComment = function(page) {
+        var message = $('#message').val();
+        if(message != null) {
+            var date = DateUtilsModule.getFormattedDateTime();
+            var session = SessionModule.getSession();
+            var username = session.username;
+            var comment = {
+                username: username,
+                date: date,
+                message: message
+            };
+            var comments = [];
+            switch(page) {
+                case "home": 
+                    if(JSON.parse(localStorage.getItem('homeComments')) != null) {
+                        comments = JSON.parse(localStorage.getItem('homeComments'));
+                    }
+                    comments.push(comment);
+                    localStorage.setItem('homeComments',JSON.stringify(comments));
+                break;
+                case "material": 
+                    if(JSON.parse(localStorage.getItem('materialComments')) != null) {
+                        comments = JSON.parse(localStorage.getItem('materialComments'));
+                    }
+                    comments.push(comment);
+                    localStorage.setItem('materialComments',JSON.stringify(comments));
+                break;
+            }
+            
+        } else {
+            alert("Aucun commentaire n'est saisi");
+        }
+        getComments(page);
+        $('#message').val("");
+    };
+
+    self.getComments = function(page) {
+        if (StorageModule.storageAvailable('localStorage')) {
+            $('#commentsList').empty();
+            var comments = [];
+            switch(page) {
+                case "home": comments = JSON.parse(localStorage.getItem('homeComments'));
+                break;
+                case "material": comments = JSON.parse(localStorage.getItem('materialComments'));
+                break;
+            }
+            if(comments != null) {
+                  for(var i=0;i<comments.length;i++) {
+                      var template = createCommentTemplate(comments[i].username,comments[i].date,comments[i].message);
+                      $('#commentsList').append(template);
+                    }
+            }
+        }
+        else {
+          // Too bad, no localStorage for us
+          alert('pas de localStorage sur ce navigateur!');
+        }
+
+    };
+
+    return self;
+})();
+
+/* Date Utils */
+var DateUtilsModule = (function(){
+    var self = {};
+
+    //methodes publiques
+
+    self.getFormattedDateTime = function(){
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth(); //January is 0!
+        var yyyy = today.getFullYear();
+        var hh = today.getHours();
+        var min = today.getMinutes();
+        var sec = today.getSeconds();
+
+        if(dd<10) {
+            dd = '0'+dd
+        } 
+
+        var month = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Décembre'];
+
+        today = dd + ' ' + month[mm] + ' ' + yyyy + ' ' + hh + ':' + min + ':' + sec ;
+        return today;
+    };
+
+    return self;
+})();
+
+/* Carousel */
+var CarouselModule = (function(){
+    var self = {};
+    var myCarousel = $("#myCarousel");
+    var item1 = $(".item1");
+    var item2 = $(".item1");
+    var item3 = $(".item1");
+    var item4 = $(".item1");
+    var left = $(".left");
+    var right = $(".right");
+
+    //methodes publiques
+    self.init = function(){
+        // Enable Carousel Indicators
+         myCarousel.carousel();
+         // Enable Carousel Controls
+         left.onclick = onClickLeft;
+         right.onclick = onClickRight;
+    };
+
+
+    function onClickLeft(){
+        //utilisation d'un autre module :)
+        myCarousel.carousel("prev");
+    }
+
+    function onClickRight(){
+        //utilisation d'un autre module :)
+        myCarousel.carousel("next");
     }
 
     return self;
