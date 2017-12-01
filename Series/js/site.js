@@ -1,5 +1,18 @@
 var URL = "https://loisirs-web-backend.cleverapps.io/users";
 
+function urlCheck(event){
+
+    event.preventDefault();
+
+    if(document.location.pathname == "/Series/home.html"){
+        if(getCookie("name") == ""){
+            document.location.href = "index.html";
+        }else{
+            document.location.href = "home.html";
+        }
+    }
+}
+
 function valid(event) {
 
     event.preventDefault();
@@ -9,23 +22,36 @@ function valid(event) {
 
     if (name == "" || password == "") {
 
-        document.getElementById("alert").innerHTML = "Le login ou password est vide";
+        document.getElementById("alert").innerHTML = "<div class=\"alert alert-danger\"><strong>Erreur!</strong> Renseignez tous les champs</div>";
 
     } else {
 
-        var newUser = { "name": name, "password": password };
+        $.getJSON(URL + "/?name=" + name + "&password=" + password).then(result => {
 
-        $.post(URL, newUser).then(function () { document.location.href = "home.html"; });
+            if (result == "") {
+
+                var newUser = { "name": name, "password": password };
+                $.post(URL, newUser).then(function () { 
+
+                    createCookie("name", name, 1);
+                    document.location.href = "home.html"; 
+                });
+
+            } else {
+
+                document.getElementById("alert").innerHTML = "<div class=\"alert alert-danger\"><strong>Déjà inscrit!</strong> Connectez-vous!</div>";
+            }
+        });
     }
 }
 
-function connexion(event){
+function connexion(event) {
 
     event.preventDefault();
 
-    if(getCookie("name") == ""){
+    if (getCookie("name") == "") {
         document.location.href = "connexion.html";
-    }else{
+    } else {
         document.location.href = "home.html";
     };
 
@@ -33,10 +59,10 @@ function connexion(event){
 
 function checkInfos(event) {
 
-   event.preventDefault();
+    event.preventDefault();
 
-   var name = document.getElementById("name").value;
-   var password = document.getElementById("password").value;
+    var name = document.getElementById("name").value;
+    var password = document.getElementById("password").value;
 
     if (getCookie("name") == "") {
 
@@ -47,19 +73,19 @@ function checkInfos(event) {
         } else {
 
             $.getJSON(URL + "/?name=" + name + "&password=" + password).then(result => {
-               
-                if(result == ""){
+
+                if (result == "") {
 
                     document.getElementById("alert").innerHTML = "<div class=\"alert alert-danger\"><strong>Not found!</strong> Login ou password incorrecte</div>";
 
-                }else{
+                } else {
 
-                    createCookie("name", name, 1); 
+                    createCookie("name", name, 1);
                     document.location.href = "home.html";
                 }
             });
         }
-    }else{
+    } else {
         document.location.href = "home.html";
     }
 }
@@ -76,7 +102,7 @@ function createCookie(key, value, days) {
         var date = new Date();
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         expires = "; expires=" + date.toGMTString();
-    }else{ 
+    } else {
         expires = "";
     }
     document.cookie = key + "=" + value + expires + "; path=/";
@@ -99,4 +125,13 @@ function getCookie(theKey) {
         }
     }
     return "";
+}
+
+function createComment(event) {
+
+    event.preventDefault();
+
+    var commentStorage = window.localStorage;
+
+    var comment = commentStorage.getItem("comment");
 }
