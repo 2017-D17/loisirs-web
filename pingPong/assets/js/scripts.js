@@ -175,7 +175,7 @@ jQuery(document).ready(function() {
 		jQuery.ajax({
           url: "http://loisirs-web-backend.cleverapps.io/users",
           data:{
-				login : username,
+				name : username,
                 password : password
 		  },
           type: "POST",
