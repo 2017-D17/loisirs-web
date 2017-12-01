@@ -2,28 +2,29 @@ var App = App || {};
 console.log('App in AuthModule :', App)
 
 App.AuthModule = (function () {
-    var TEMPLATES_URL = "./templates";
-    var FORMS_URL = TEMPLATES_URL + "/formulaire.html";
-    var LOISIR_URL = TEMPLATES_URL + "/escalade.html";
+    var FORMS_URL = "./templates/formulaire.html";
     var BACK_URL = 'https://loisirs-web-backend.cleverapps.io/users';
 
 
     var start = function () {
         $(document).ready(function () {
+            console.log('isLoggedIn : ', isLoggedIn())
             if (isLoggedIn()) {
-                loadInnerHtml(LOISIR_URL);
+                App.ClimbModule.start();
             } else {
-                loadInnerHtml(FORMS_URL);
+                logout()
             }
         })
     }
+
     /** return true if the cookie logged_in is set and equal to "true" */
     var isLoggedIn = function () {
-        return getCookie('logged_in') === "true";
+        return (getCookie('logged_in') === "true" && localStorage.getItem("username") != "null")
     }
 
     /** Logout the user */
     var logout = function () {
+        console.log("logging out")
         setCookie("logged_in", "false")
         localStorage.setItem("username", null)
         loadInnerHtml(FORMS_URL);
@@ -37,10 +38,10 @@ App.AuthModule = (function () {
             $.get(BACK_URL + '/?name=' + user.name).then(resp => {
                 if (resp && resp[0]) {
                     if (resp[0].password == user.password) {
-                        console.log('connected !!!')
-                        loadInnerHtml(LOISIR_URL);
-                        setCookie("logged_in", "true")
+                        console.log('connected !!!', resp)
                         localStorage.setItem("username", user.name)
+                        App.ClimbModule.start();
+                        setCookie("logged_in", "true")
                     } else {
                         showErrorAlert("Mauvais mot de passe pour " + user.name + " !")
                     }
@@ -74,20 +75,12 @@ App.AuthModule = (function () {
         var body = '';
         $.get(url).then(resp => {
             document.querySelector('main').innerHTML = resp;
-            if (url == LOISIR_URL) {
-                App.ClimbModule.initTemplate();
-                App.CommentsModule.addCommentsEvents();
-                $('nav li button').on('click', function () {
-                    logout()
-                })
-            } else {
-                $('#create_button').on('click', function () {
-                    create()
-                })
-                $('#login_button').on('click', function () {
-                    login()
-                })
-            }
+            $('#create_button').on('click', function () {
+                create()
+            })
+            $('#login_button').on('click', function () {
+                login()
+            })
         })
     }
 
