@@ -41,7 +41,7 @@ function deconnecter(e) {
 
 function displayComments() {
 	var comments = [];
-	if (window.localStorage.comments != "") {
+	if (localStorage.comments) {
 		comments = JSON.parse(window.localStorage.comments);
 		console.log(comments.length + " commentaires")
 		for (var c = comments.length-1; c >= 0; c--) {
@@ -60,7 +60,7 @@ function postComment(event) {
 		var date = new Date();
 		date = date.toLocaleString("fr-FR", {day : "numeric", month: "long", year: "numeric", hour:"numeric", minute:"numeric"});
 		var com = { "author": readCookie("username"), "text": document.getElementById("comment").value, "date" : date}
-		if (window.localStorage.comments == "") {
+		if (!localStorage.comments) {
 			window.localStorage.comments = JSON.stringify([com]);
 		} else {
 			var comments = JSON.parse(window.localStorage.comments);
