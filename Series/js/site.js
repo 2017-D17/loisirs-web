@@ -1,6 +1,8 @@
 var URL = "https://loisirs-web-backend.cleverapps.io/users";
 
-function valid() {
+function valid(event) {
+
+    event.preventDefault();
 
     var name = document.getElementById("name").value;
     var password = document.getElementById("password").value;
@@ -17,29 +19,38 @@ function valid() {
     }
 }
 
-function checkInfos() {
+function connexion(event){
+
+    event.preventDefault();
+
+    if(getCookie("name") == ""){
+        document.location.href = "connexion.html";
+    }else{
+        document.location.href = "home.html";
+    };
+
+}
+
+function checkInfos(event) {
+
+   event.preventDefault();
 
    var name = document.getElementById("name").value;
    var password = document.getElementById("password").value;
-   var cookie = getCookie("name");
 
-    if (cookie == "") {
+    if (getCookie("name") == "") {
 
         if (name == "" || password == "") {
 
-            document.getElementById("alert").innerHTML = "Renseignez les champs !";
+            document.getElementById("alert").innerHTML = "<div class=\"alert alert-danger\"><strong>Erreur!</strong> Renseignez tous les champs</div>";
 
         } else {
 
             $.getJSON(URL + "/?name=" + name + "&password=" + password).then(result => {
                
-                if (result[0].name == "" || result[0].password == "") {
+                if(result == ""){
 
-                    document.getElementById("alert").innerHTML = "Saisissez tous les champs !";
-
-                } else if(result[0].name != name || result[0].password != password){
-
-                    document.getElementById("alert").innerHTML = "Not found! Login ou password incorrecte";
+                    document.getElementById("alert").innerHTML = "<div class=\"alert alert-danger\"><strong>Not found!</strong> Login ou password incorrecte</div>";
 
                 }else{
 
