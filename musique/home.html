@@ -5,9 +5,6 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" ></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -77,19 +74,19 @@
   <h2>Mes influences</h2>
 
   <ul>
-  	<div class = row>
+  	<div class = "row">
   		<div class="col"> <li>AC/DC</li> </div>
   		<div class="col"> <li>Deep Purple</li> </div>
   		<div class="col"> <li>Metallica</li> </div>
   		<div class="col"> <li>Megadeth</li> </div>
   	</div>
-  	<div class = row>
+  	<div class = "row">
 		<div class="col"> <li>Judas Priest</li> </div>
 		<div class="col"> <li>Flogging Molly</li></div>
 		<div class="col"> <li>Black Sabbath</li></div>
 		<div class="col"> <li>Airbourne</li></div>
   	</div>
-  	<div class = row>
+  	<div class = "row">
 		<div class="col"> <li>George Thorogood</li></div>
 		<div class="col"> <li>Led Zeppelin</li></div>
 		<div class="col"> <li>Van Halen</li></div>
@@ -99,6 +96,26 @@
   </ul>
 
 	<a href="http://tagpower.github.io/spaceinvaders/">Y a ça aussi, si vous vous ennuyez</a>
+
+	<br>
+	<br>
+
+	<h2>Commentaires</h2>
+
+		<div id="commentaires"></div>
+
+		<br>
+
+		<form class="form" style="display: block; text-align: left;">
+			<div class="form-group">
+				<label for="comment">Écrire un commentaire :</label>
+				<textarea class="form-control"  id="comment" rows="4" placeholder="Commentaire..."></textarea>
+				<button class="button btn-success" onclick="postComment(event)">Poster</button>
+				<label id="comment_result"> </label>
+			</div>
+		</form>
+
+
 
 
 
@@ -112,27 +129,12 @@
  
 
 
-  <script type="text/javascript">
-	function readCookie(name) {
-	    var nameEQ = name + "=";
-	    var ca = document.cookie.split(';');
-	    for(var i=0;i < ca.length;i++) {
-	        var c = ca[i];
-	        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-	        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-	    }
-	    return null;
-	}
-	var username = readCookie("username");
-	document.getElementById("welcome").innerText += " " + username;
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  	<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="js/home.js"></script>
 
-  	function deconnecter(e) {
-  		document.cookie = "username" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  		location.href = "index.html"
-  	}
-
-  </script>
 
 </body>
 

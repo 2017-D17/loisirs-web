@@ -10,7 +10,13 @@ p {
 	margin-left: 20px;
 }
 
+div .card p {
+	margin-left: 10px
+}
+
 form {
     display: inline-block;
     text-align: center;
+    margin-left: 1cm;
+    margin-right: 1cm;
 }
