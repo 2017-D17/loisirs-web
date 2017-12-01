@@ -14,24 +14,32 @@
   <link type="text/css" rel="stylesheet" href="../css/style.css" media="screen,projection" />
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="text/javascript">
+    window.addEventListener("load", function (event) {
+      var connected = getCookie("userConnected");
+      if (connected) {
+        displayComments(getAllComments());
+      }
+      else {
+        window.location.replace("http://127.0.0.1:8080/poker");
+      }
+    });
+  </script>
 </head>
 
-<body onload="checkCookie();displayComments(getAllComments());">
+<body>
 
   <div class="container">
 
     <nav>
       <div class="nav-wrapper">
-        <a href="../index.html" class="brand-logo">Profile</a>
+        <a href="../index.html" class="brand-logo">Home</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li>
-            <a href="histoire.html">L'histoire</a>
+            <a href="home.html">Home</a>
           </li>
           <li>
-            <a href="jeu.html">Le jeu</a>
-          </li>
-          <li>
-            <a href="strategie.html">La stratégie</a>
+            <a href="video.html">Video</a>
           </li>
           <li>
             <a id="deconnexion" href="../index.html">Se deconnecter</a>
@@ -74,7 +82,7 @@
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="../js/materialize.min.js"></script>
-  <script type="text/javascript" src="../js/script.js"></script>
+  <script type="text/javascript" src="../js/MainModule.js"></script>
 </body>
 
 </html>

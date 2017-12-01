@@ -1,3 +1,5 @@
+
+
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
     var $this = $(this),
@@ -26,6 +28,7 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
     }
 
 });
+
 
 $('.tab a').on('click', function (e) {
 
@@ -67,6 +70,7 @@ $('#inscription').on('click', function (e) {
 
 });
 
+
 $('#connexion').on('click', function (e) {
 
     e.preventDefault();
@@ -91,8 +95,7 @@ $('#connexion').on('click', function (e) {
 
         if (trouve) {
             setCookie("userConnected", trouve);
-            setCookie("userName", document.getElementById("name2").value);
-            window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
+            window.location.replace("http://127.0.0.1:8080/poker/template/home.html");
         }
     };
 
@@ -101,12 +104,9 @@ $('#connexion').on('click', function (e) {
 
 });
 
-
 $('#deconnexion').on('click', function (e) {
     setCookie("userConnected", "");
-    setCookie("userName", "");
 });
-
 
 function setCookie(cname, cvalue) {
     var d = new Date();
@@ -138,20 +138,6 @@ function checkCookie() {
     }
 }
 
-function addMainBlock() {
-    var connected = getCookie("userConnected");
-    if (connected) {
-        $("#main1").hide();
-        $("#main2").show();
-        window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
-    }
-    else {
-        $("#main2").hide();
-        $("#main1").show();
-    }
-}
-
-
 $('#comment').on('click', function (e) {
     e.preventDefault();
     // Check browser support
@@ -177,6 +163,7 @@ $('#comment').on('click', function (e) {
     }
 });
 
+
 function getAllComments() {
     var comStr = localStorage.getItem("message");
     var comments = [];
@@ -201,3 +188,74 @@ function displayComments(comments) {
     })
     document.getElementById("commentaires").innerHTML = commentaires;
 }
+
+
+var initModule = (function () {
+    var deconnexionPrivee = function () {
+
+    }
+
+    var deconnexionPrivee2 = function () {
+
+    }
+
+    var connexion = function () {
+
+    }
+
+    return {
+        dex: deconnexionPrivee2,
+        con: connexion
+    }
+
+})();
+
+
+initModule.dex()
+initModule.con()
+
+var secondModule = (function () {
+
+
+    return {
+        uneChose: function () {
+
+        }
+    }
+
+})();
+
+var troisiemeModule = (function (titi) {
+
+
+    return {
+        uneAutreChose: function () {
+
+        }
+    }
+
+})(secondModule);
+
+function quatreModule(secModule) {
+
+
+    return {
+        uneAutreChose: function () {
+
+        }
+    }
+
+}
+
+quatreModule(secondModule)
+
+    (function (secModule) {
+
+
+        return {
+            uneAutreChose: function () {
+
+            }
+        }
+
+    })(secondModule)

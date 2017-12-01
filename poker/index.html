@@ -14,107 +14,103 @@
   <link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection" />
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="text/javascript">
+    window.addEventListener("load", function (event) {
+      var connected = getCookie("userConnected");
+      console.log(connected);
+      if (connected) {
+        $("#main").hide();
+        window.location.replace("http://127.0.0.1:8080/poker/template/home.html");
+      }
+      else {
+        $("#main").show();
+      }
+    });
+  </script>
 </head>
 
-<body onload="addMainBlock()">
+<body>
 
 
-  <div class="container">
+  <div id="main" class="container">
 
-    <!-- MENU -->
+    <div class="form">
 
-    <!-- FORMULAIRES INSCRIPTION ET CONNEXION -->
-    <div id="main1">
+      <ul class="tab-group">
+        <li class="tab active">
+          <a href="#signup">Inscription</a>
+        </li>
+        <li class="tab">
+          <a href="#login">Connexion</a>
+        </li>
+      </ul>
 
-      <div class="form">
-
-        <ul class="tab-group">
-          <li class="tab active">
-            <a href="#signup">Inscription</a>
-          </li>
-          <li class="tab">
-            <a href="#login">Connexion</a>
-          </li>
-        </ul>
-
-        <div class="tab-content">
-          <div id="signup">
+      <div class="tab-content">
+        <div id="signup">
 
 
-            <form>
+          <form>
 
-              <div class="field-wrap">
-                <label>
-                  Nom
-                  <span class="req">*</span>
-                </label>
-                <input id="name" name="name" type="text" required autocomplete="off" />
-              </div>
+            <div class="field-wrap">
+              <label>
+                Nom
+                <span class="req">*</span>
+              </label>
+              <input id="name" name="name" type="text" required autocomplete="off" />
+            </div>
 
-              <div class="field-wrap">
-                <label>
-                  Mot de passe
-                  <span class="req">*</span>
-                </label>
-                <input id="password" name="password" type="password" required autocomplete="off" />
-              </div>
+            <div class="field-wrap">
+              <label>
+                Mot de passe
+                <span class="req">*</span>
+              </label>
+              <input id="password" name="password" type="password" required autocomplete="off" />
+            </div>
 
-              <button id="inscription" class="button button-block" />S'inscrire</button>
+            <button id="inscription" class="button button-block" />S'inscrire</button>
 
-            </form>
-
-          </div>
-
-          <div id="login">
-
-            <form>
-
-              <div class="field-wrap">
-                <label>
-                  Nom
-                  <span class="req">*</span>
-                </label>
-                <input id="name2" name="name2" type="text" required autocomplete="off" />
-              </div>
-
-              <div class="field-wrap">
-                <label>
-                  Mot de passe
-                  <span class="req">*</span>
-                </label>
-                <input id="password2" name="password2" type="password" required autocomplete="off" />
-              </div>
-
-              <button id="connexion" class="button button-block" />Se connecter</button>
-
-            </form>
-
-          </div>
+          </form>
 
         </div>
-        <!-- tab-content -->
 
-      </div>
-      <!-- /form -->
+        <div id="login">
 
-    </div>
+          <form>
 
+            <div class="field-wrap">
+              <label>
+                Nom
+                <span class="req">*</span>
+              </label>
+              <input id="name2" name="name2" type="text" required autocomplete="off" />
+            </div>
 
-    <div id="main2">
-      <div class="row">
-        <div class="col s7 offset-s2">
-          <img class="responsive-img" src="http://www.eclypsia.com/content/LoL/Drui/Vrac/Mars/tencent_logo.jpg">
+            <div class="field-wrap">
+              <label>
+                Mot de passe
+                <span class="req">*</span>
+              </label>
+              <input id="password2" name="password2" type="password" required autocomplete="off" />
+            </div>
+
+            <button id="connexion" class="button button-block" />Se connecter</button>
+
+          </form>
+
         </div>
-      </div>
-    </div>
 
+      </div>
+      <!-- tab-content -->
+
+    </div>
+    <!-- /form -->
 
   </div>
 
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/MainModule.js"></script>
 </body>
 
 </html>
