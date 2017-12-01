@@ -3,7 +3,7 @@ function storageWords() {
     var comment = {
         message: document.getElementById("words").value,
         user: getCookie("username"),
-        date: new Date()
+        date: new Date().toISOString().slice(0, 10),
     }
 
     var commentsStr = localStorage.getItem("comments");
@@ -26,7 +26,7 @@ function displayWords() {
 
     var comments = commentsStr ? JSON.parse(commentsStr) : []
     document.getElementById("comments").innerHTML = comments.map(function (com) {
-        return "<div>" + com.user + " : " + com.message + "</div>"
+        return "<div>" + com.user + " : " + com.message + " / " + com.date + "</div>"
     });;
 }
 
