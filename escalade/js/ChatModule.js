@@ -7,45 +7,69 @@ App.ChatModule = (function () {
     var WEBSOCKET_URL_DEV = 'ws://localhost:8080'
     var username = localStorage.getItem("username")
     var messages = [];
+    var historyMaxSize = 20;
     var start = function () {
         username = localStorage.getItem("username")
-        messageSocket = new WebSocket(WEBSOCKET_URL_PROD)
-        messageSocket.onopen = function (event) {
-            console.log('messageSocket open')
-            registerModalEvents()
-        };
-
-        messageSocket.onmessage = (msg) => {
-            messages.push(getJsonMsg(msg.data))
-            addMessageToModal()
-        };
-
-        messageSocket.onclose = (msg) => {
-            console.log('socket closed')
-        };
+        initWebSocket()
         $('#messagerieModal').on('show.bs.modal', function (event) {
             scrollDownTheModal()
         })
     }
+    var initWebSocket = function () {
+        messageSocket = new WebSocket(WEBSOCKET_URL_PROD)
+        messageSocket.onopen = function (event) {
+            console.log('messageSocket open')
+            $("#messageriebutton").prop("disabled", false)
+            registerModalEvents()
+        };
+
+        messageSocket.onmessage = (msg) => {
+            if (messages.length < historyMaxSize) {
+                messages.push(getJsonMsg(msg.data))
+            } else {
+                sortMessages()
+                // remove the oldest message 
+                messages.splice(0, 1)
+                // add the new message
+                messages.push(getJsonMsg(msg.data));
+            }
+            addMessagesToModal()
+        };
+
+        messageSocket.onclose = (msg) => {
+            console.log('socket closed')
+            if (localStorage.getItem("username") != "null") {
+                initWebSocket()
+            }
+        };
+    }
+
     var registerModalEvents = function () {
         var modal = $('#messagerieModal')
         msgSections = modal.find('#messages_section')
-        msgSections.scrollTop(msgSections[0].scrollHeight);
+        msgSections.scrollTop(msgSections[0].scrollHeight)
+
         modal.find('#inputMessage').on("input propertychange", function (event) {
             ($(this).val() === "") ? modal.find("#sendMsg").prop("disabled", true) : modal.find("#sendMsg").prop("disabled", false);
         })
         modal.find('#sendMsg').on('click', function (event) {
-            console.log('envoi du message', modal.find('#inputMessage').val())
-            messageSocket.send(buildMsg(modal.find('#inputMessage').val()))
+            var msgStr = modal.find('#inputMessage').val()
+            if (msgStr === "") { return }
+            $("#inputMessage").val("");
+            var msg = buildMsg(msgStr);
+            console.log('envoi du message', msg)
+            messageSocket.send(msg)
+            modal.find('#inputMessage').val("")
         })
     }
-    var addMessageToModal = function (data) {
+
+    var addMessagesToModal = function (data) {
         /** on vide la zone */
         $('#messages_section').empty()
+        $('#messagerieModalLabel small').text(messages.length + ' messages');
+
         /** on trie nos messages */
-        messages.sort((msg1, msg2) => {
-            return new Date(msg2.date) - new Date(msg1.date)
-        })
+        sortMessages()
         /** puis on ajoute les messages au modal dans le bon ordre : */
 
         messages.forEach(msg => {
@@ -64,7 +88,11 @@ App.ChatModule = (function () {
         /** scroll to the bottom */
         scrollDownTheModal()
     }
-
+    var sortMessages = function () {
+        messages.sort((msg1, msg2) => {
+            return new Date(msg2.date) - new Date(msg1.date)
+        })
+    }
     var scrollDownTheModal = function () {
         var wtf = $('#messages_section');
         var height = wtf[0].scrollHeight;
