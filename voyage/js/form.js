@@ -51,7 +51,7 @@ jQuery(function () {
     $("#button").click(function (e) {
 
         e.preventDefault()
-        valid == false;
+
         if (valid == true)
 
             location = "../voyage/voyage.html";
@@ -64,7 +64,7 @@ jQuery(function () {
         if (valid) {
             setCookie("userConnected", valid);
             setCookie("userName", document.getElementById("username").value);
-            window.location.replace("http://127.0.0.1:8080/voyage/voyage.html");
+            window.location.replace("/voyage/voyage.html");
         }
 
 
