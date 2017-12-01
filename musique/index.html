@@ -2,12 +2,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Loisir trop cool</title>
+	<title>Instruments de musique</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" ></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"  crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </head>
 
 <body>
@@ -16,19 +17,48 @@
     <div class="container">
       <h1 class="jumbotron-heading">La musique c'est fantastique</h1>
       <p class="lead text-muted">Salut, Tagpower here. Bon j'suis désolé, j'ai pas trop d'inspi ce matin. Du coup j'espère que vous m'en voudrez pas si je parle tout le temps des mêmes trucs ?</p>
-    
-      <a href="connexion.html">
-        <button role="button" class="btn-secondary" >Connexion</button>
-      </a>
-
-      <a href="inscription.html">
-        <button type="button" class="btn-success">Inscription</button>
-      </a>
 
 
 
     </div>
   </section>
+
+  <h2>Inscription</h2>
+<!-- http://loisirs-web-backend.cleverapps.io/users -->
+  <form class="form-inline justify-content-center" method="get">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="nom" class="form-control" id="ins_nom">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Mot de passe :</label>
+      <input type="password" class="form-control" id="ins_pwd">
+    </div>
+    <button class="btn btn-primary" onclick="inscription(event)">Soumettre</button>
+    <label id="ins_result"> </label>
+  </form> 
+
+  <br>
+
+  <h2>Connexion</h2>
+<!-- http://loisirs-web-backend.cleverapps.io/users -->
+  <form class="form-inline justify-content-center" method="get">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="nom" class="form-control " id="con_nom">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Mot de passe :</label>
+      <input type="password" class="form-control" id="con_pwd">
+    </div>
+    <button class="btn btn-primary" onclick="connexion(event)">Soumettre</button>
+    <label id="con_result"></label>
+  </form> 
+
+  <br>
+
+
+
 
 
 	<h2 id="guitares">Guitare</h2>

@@ -3,16 +3,47 @@
     width: auto; 
     max-height: 50px;
 }
-
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 body {
     padding-top:85px;
 }
+section {
+    height: 100vh;
+}
 
 #carouselEscalade {
-    max-height: 436px;
+    max-height: 809px;
+    max-width: 1280px;
     overflow:hidden;
 }
- 
+
+.carousel{
+    width:100%;
+    min-height:500px;
+    max-height:860px;
+}
 #alert_placeholder{
     padding-top: 20px;
+}
+
+.scrollable{
+  max-height:400px;
+  overflow-y: scroll;
+}
+
+#pres{
+    background: url('media/news-chinajam-11.jpg');
+    background-size:cover;
+    background-position:center center;
+    background-attachment:fixed;
+}
+section div .paragraphe {
+    color: lightgray;
+    padding: 20px;
+    border-radius: 10px;
+    background:rgba(0, 0, 0, 0.7)
 }
