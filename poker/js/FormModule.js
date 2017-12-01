@@ -1,8 +1,7 @@
-var App = App || {};
-console.log('App in form.js :', App)
 
 
-App.FormModule = (function () {
+FormModule = (function () {
+
 
     var form = function () {
         $('.form').find('input, textarea').on('keyup blur focus', function (e) {
@@ -52,7 +51,40 @@ App.FormModule = (function () {
         });
     }
 
+
+    var inscription = function () {
+        $('#inscription').on('click', function (e) {
+            e.preventDefault();
+            var name = document.getElementById("name2").value
+            var password = document.getElementById("password2").value
+            if (name == "" || password == "") {
+                alert("champs vide !!!!");
+                return;
+            }
+            AuthModule.inscription(name, password, function (connected) {
+
+                if (connected) {
+                    window.location.replace("poker/template/home.html");
+                }
+            });
+        });
+    }
+    var connexion = function () {
+        $('#connexion').on('click', function (e) {
+            var name = document.getElementById("name2").value
+            var password = document.getElementById("password2").value
+            if (name == "" || password == "") {
+                alert("champs vide !!!!");
+                return;
+            }
+            AuthModule.connexion(name, password, (connected) => {
+                if (connected) {
+                    window.location.replace("poker/template/home.html");
+                }
+            })
+        })
+    }
     form()
     tab()
-
+    inscription()
 })()

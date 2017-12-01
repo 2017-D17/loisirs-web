@@ -1,79 +1,98 @@
-//var App = App || {};
-//console.log('App in auth.js :', App)
-
-
 var AuthModule = (function () {
 
 
-    var inscription = function () {
-        $('#inscription').on('click', function (e) {
+    var url = "http://loisirs-web-backend.cleverapps.io/users";
 
-            e.preventDefault();
+    var inscription = function (name, password, callback) {
 
-            var xhr = new XMLHttpRequest();
-            var url = "http://loisirs-web-backend.cleverapps.io/users";
+        $.get(url + "/?name=" + name).then(resp => {
 
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var json = JSON.parse(xhr.responseText);
-                }
-            };
-            var data = JSON.stringify({
-                "name": document.getElementById("name").value,
-                "password": document.getElementById("password").value
-            });
-            xhr.send(data);
+            if (resp.length > 0) {
+                alert("User existe deja...");
+                callback(false);
+            }
 
+            $.post(url, { "name": name, "password": password }).then(resp => {
+                login(name);
+                callback(true);
+            })
         });
+
     }
 
-    var connexion = function () {
-        $('#connexion').on('click', function (e) {
+    var connexion = function (name, password, callback) {
+        $.get(url + "/?name=" + name).then(users => {
+            if (users.length > 0 && users[0].password == password) {
+                login(name);
+                callback(true)
+            } else {
+                alert("mot de passe incorrect")
+                callback(false)
+            }
+        })
 
-            e.preventDefault();
+    }
 
-            var xhr = new XMLHttpRequest();
-            var url = "http://loisirs-web-backend.cleverapps.io/users";
+    function login(username) {
+        setCookie("userConnected", true);
+        setCookie("userName", username);
+    }
 
-            xhr.onreadystatechange = function () {
-
-                var trouve = false;
-
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var json = JSON.parse(xhr.responseText);
-
-                    var i;
-                    for (i = 0; i < json.length; i++) {
-                        if (document.getElementById("name2").value == json[i].name && document.getElementById("password2").value == json[i].password) {
-                            trouve = true;
-                        }
-                    }
-                }
-
-                if (trouve) {
-                    setCookie("userConnected", trouve);
-                    window.location.replace("http://127.0.0.1:8080/poker/template/histoire.html");
-                }
-            };
-
-            xhr.open("GET", url, true);
-            xhr.send();
-
-        });
+    function logout() {
+        setCookie("userConnected", "");
+        setCookie("userName", "");
     }
 
     var deconnexion = function () {
-        $('#deconnexion').on('click', function (e) {
-            setCookie("userConnected", "");
-        });
+        logout();
+        window.location.replace("poker/");
     }
 
+    var getUserName = function () {
+        return getCookie("userName")
+    }
+
+    function setCookie(cname, cvalue) {
+        var d = new Date();
+        d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";path=/poker/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function checkCookie() {
+        var connected = getCookie("userConnected");
+        if (!connected) {
+            window.location.replace("http://127.0.0.1:8080/poker");
+        }
+    }
+
+    var init = function () {
+
+    }
+
+    init();
+
     return {
-        signup: inscription,
-        signin: connexion,
-        signout: deconnexion
+        inscription,
+        connexion,
+        deconnexion,
+        getUserName
     };
 
 })()
