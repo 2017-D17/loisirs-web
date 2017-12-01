@@ -52,9 +52,11 @@ jQuery(function () {
 
         e.preventDefault()
 
-        if (valid == true)
-
-            location = "../voyage/voyage.html";
+        if (valid) {
+            setCookie("userConnected", valid);
+            setCookie("userName", document.getElementById("username").value);
+            window.location.replace("/voyage/voyage.html");
+        }
 
 
         else
