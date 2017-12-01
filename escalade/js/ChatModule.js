@@ -9,7 +9,7 @@ App.ChatModule = (function () {
     var messages = [];
     var start = function () {
         username = localStorage.getItem("username")
-        messageSocket = new WebSocket(WEBSOCKET_URL_DEV)
+        messageSocket = new WebSocket(WEBSOCKET_URL_PROD)
         messageSocket.onopen = function (event) {
             console.log('messageSocket open')
             registerModalEvents()
