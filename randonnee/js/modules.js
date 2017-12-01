@@ -1,43 +1,42 @@
-
 /* Redirection */
 var PageRedirectionModule = (function(){
     var self = {};
 
     //methodes publiques
 
+    self.getCurrentRelativeUrl = function() {
+        var currentUrlPathName = window.location.pathname;
+        var splitedUrl = currentUrlPathName.split("/randonnee/");
+        return splitedUrl[1];
+    }
+
     self.redirection = function(){
-        var url = readCookie('previousUrl');
-            var currentRelativeUrl = getCurrentRelativeUrl();
+        var url = CookiesModule.readCookie('previousUrl');
+            var currentRelativeUrl = self.getCurrentRelativeUrl();
             console.log('url', url);
             console.log('relativeUrl', currentRelativeUrl);
             if(url != currentRelativeUrl) {
                 
                 if(currentRelativeUrl == "index.html" || currentRelativeUrl == "") {
-                    var session = getSession();
+                    var session = SessionModule.getSession();
                     /* test if user logged */
                     if(session.log_in != null && session.username != null) {
                         document.location = "templates/home.html";
-                        var currentUrl = getCurrentRelativeUrl();
-                        createCookie("previousUrl",currentUrl,1);
+                        var currentUrl = self.getCurrentRelativeUrl();
+                        CookiesModule.createCookie("previousUrl",currentUrl,1);
                     }
                 } else {
                     /* test if user logged */
-                    var session = getSession();
+                    var session = SessionModule.getSession();
                     if(session.log_in == null && session.username == null) {
                         document.location = "../index.html";
                         var currentUrl = document.location.href;
-                        createCookie("previousUrl",currentUrl,1);
+                        CookiesModule.createCookie("previousUrl",currentUrl,1);
                     }
                 }
             } 
-            var currentUrl = getCurrentRelativeUrl();
-            createCookie("previousUrl",currentUrl,1);
-    }
-
-    self.getCurrentRelativeUrl = function() {
-        var currentUrlPathName = window.location.pathname;
-        var splitedUrl = currentUrlPathName.split("/randonnee/");
-        return splitedUrl[1];
+            var currentUrl = self.getCurrentRelativeUrl();
+            CookiesModule.createCookie("previousUrl",currentUrl,1);
     }
 
     return self;
@@ -61,7 +60,7 @@ var CookiesModule = (function(){
     };
 
     self.createCookieIfNotExists = function(name,value,days) {
-        var res = readCookie(name);
+        var res = self.readCookie(name);
         if(res == null ){
             if (days) {
                 var date = new Date();
@@ -95,7 +94,7 @@ var CookiesModule = (function(){
 
     /* delete cookie */
     self.eraseCookie = function(name) {
-        createCookie(name,"",-1);
+        self.createCookie(name,"",-1);
     };
 
     return self;
@@ -109,8 +108,8 @@ var SessionModule = (function(){
 
     self.getSession = function() {
         var session = {
-            log_in: readCookie('log_in'),
-            username: readCookie('username'),
+            log_in: CookiesModule.readCookie('log_in'),
+            username: CookiesModule.readCookie('username'),
         }
         return session;
     };
@@ -120,6 +119,7 @@ var SessionModule = (function(){
 
 /* Login */
 var LoginModule = (function(){
+    var serverUrl = 'https://loisirs-web-backend.cleverapps.io/users';
     var self = {};
 
     //methodes publiques
@@ -167,7 +167,6 @@ var LogoutModule = (function(){
     var self = {};
 
     //methodes publiques
-
     self.deconnection = function(){
         CookiesModule.eraseCookie('log_in');
         CookiesModule.eraseCookie('username');
@@ -185,6 +184,7 @@ var RegisterModule = (function(){
     //methodes publiques
 
     self.register = function(){
+        var serverUrl = 'https://loisirs-web-backend.cleverapps.io/users';
         console.log('register');
         /* get params from form */
         var user = {
@@ -303,7 +303,7 @@ var CommentsModule = (function(){
         } else {
             alert("Aucun commentaire n'est saisi");
         }
-        getComments(page);
+        self.getComments(page);
         $('#message').val("");
     };
 
@@ -319,7 +319,7 @@ var CommentsModule = (function(){
             }
             if(comments != null) {
                   for(var i=0;i<comments.length;i++) {
-                      var template = createCommentTemplate(comments[i].username,comments[i].date,comments[i].message);
+                      var template = self.createCommentTemplate(comments[i].username,comments[i].date,comments[i].message);
                       $('#commentsList').append(template);
                     }
             }
@@ -395,3 +395,9 @@ var CarouselModule = (function(){
 
     return self;
 })();
+
+PageRedirectionModule.redirection();
+var relativeUrl = PageRedirectionModule.getCurrentRelativeUrl();
+CookiesModule.createCookieIfNotExists("previousUrl",relativeUrl,1);
+CarouselModule.init();
+

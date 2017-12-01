@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="../css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="../js/rando.js"></script>
 	<script src="../js/modules.js"></script>
 </head>
 
@@ -31,7 +30,7 @@
 				    <ul  id="randoNavbar" class="nav navbar-nav">
 					      <li><a href="home.html">Accueil</a></li>
 					      <li><a href="material.html">Matériel</a></li>
-					      <li><a id="deconnection" href="#" onclick='return LogoutModule.deconnection()'>Déconnexion</a></li>
+					      <li><a id="deconnection" href="#" onclick='LogoutModule.deconnection(); return false;'>Déconnexion</a></li>
 				    </ul>
 			  </div>
 		</nav>
@@ -146,7 +145,7 @@
 	</div>  
 	</div>
 	<script>
-	    getComments("home");
+	    CommentsModule.getComments("home");
 	</script>
 
 	<footer class="navbar-default navbar-fixed-bottom">
