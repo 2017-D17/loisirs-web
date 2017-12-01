@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
 
-body {
-    background-color: coral;
+body{
+    height: 100%;
+    background-repeat: no-repeat;
+   
+    background:url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
+    font-family: 'Oxygen', sans-serif;
+       background-size: cover;
 }
 a:link {
     color: green;
@@ -66,7 +67,7 @@ h2 {
 }
 div.jumbotron{
     position: static;
-    border: 3px solid rgb(173, 33, 75);
+    border: 3px solid rgb(15, 7, 9);
 
 }
 .form-group{
@@ -101,6 +102,7 @@ img {
     background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
 }
+
 .diaporama{
 margin: 0 auto;
 width:960px;
@@ -144,7 +146,4 @@ animation-direction: normal;
 }
 
 
-</style>
-</head>
 
-</html>
