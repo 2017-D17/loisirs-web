@@ -40,19 +40,13 @@ function deconnecter(e) {
 }
 
 function displayComments() {
-	console.log(window.localStorage.comments)
-	var comments = []
+	var comments = [];
 	if (window.localStorage.comments != "") {
 		comments = JSON.parse(window.localStorage.comments);
-		console.log("fuck");
-		console.log(comments);
-
-		for (c in comments) {
-			//$('#commentaires').addChild(c);
-			console.log(c);
+		console.log(comments.length + " commentaires")
+		for (var c = comments.length-1; c >= 0; c--) {
+			$('#commentaires').append("<div class='card' style='margin-left: 1cm' style='margin-right: 1cm'> <div class='card-body'><h4 class='card-title'>" + comments[c].author + "</h4> <p>" + comments[c].text + "</p><p style='font-size:10px'>" + comments[c].date + "</div></div>");
 		}
-
-
 	} else {
 		document.getElementById('commentaires').innerText = "Pas de commentaire."
 	}
@@ -60,16 +54,20 @@ function displayComments() {
 
 function postComment(event) {
 	event.preventDefault();
-	var date = new Date();
-	date = date.toLocaleString("fr-FR", {day : "numeric", month: "long", year: "numeric", hour:"numeric", minute:"numeric"});
-	var com = { "author": readCookie("username"), "text": document.getElementById("comment").value, "date" : date}
-	console.log(com)
-	if (window.localStorage.comments == "") {
-		window.localStorage.comments = JSON.stringify(com);
+	if (document.getElementById("comment").value.trim() === "") {
+		document.getElementById("comment_result").innerHTML = "Vous ne pouvez pas poster un commentaire vide."
 	} else {
-		var comments = JSON.parse(window.localStorage.comments);
-		comments.push(JSON.parse(com));
-		window.localStorage.comments = JSON.stringify(window.localStorage.comments);
+		var date = new Date();
+		date = date.toLocaleString("fr-FR", {day : "numeric", month: "long", year: "numeric", hour:"numeric", minute:"numeric"});
+		var com = { "author": readCookie("username"), "text": document.getElementById("comment").value, "date" : date}
+		if (window.localStorage.comments == "") {
+			window.localStorage.comments = JSON.stringify([com]);
+		} else {
+			var comments = JSON.parse(window.localStorage.comments);
+			comments.push(com);
+			window.localStorage.comments = JSON.stringify(comments);
+		}
+		window.location.reload();
 	}
 	return false;
 }
