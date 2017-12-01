@@ -1,6 +1,9 @@
 
 jQuery(document).ready(function() {
-		
+	
+	if($.cookie("pingPongBlogUserIsLogged")){
+		window.location.replace("http://127.0.0.1:8080/pingPong/home.html");
+	}
     /*
         Fullscreen background
     */
@@ -54,6 +57,8 @@ jQuery(document).ready(function() {
 		
 		if(userExist){
 			e.preventDefault();
+			$.cookie("pingPongBlogUserIsLogged", true, { path: '/' });
+			$.cookie("pingPongBlogUserName", username, { path: '/' });
 			document.location.href='http://127.0.0.1:8080/pingPong/home.html';
 		}
 		else if(!userExist && formValided){
@@ -124,6 +129,8 @@ jQuery(document).ready(function() {
 		
 		if(userSaved){
 			e.preventDefault();
+			$.cookie("pingPongBlogUserIsLogged", true, { path: '/' });
+			$.cookie("pingPongBlogUserName", username, { path: '/' });
 			document.location.href='http://127.0.0.1:8080/pingPong/home.html';
 		}
 		
