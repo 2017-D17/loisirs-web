@@ -67,7 +67,7 @@ function createCookie(name,value,days) {
         var expires = "; expires="+date.toGMTString();
     }
     else var expires = "";
-    document.cookie = name+"="+value+expires+"; path=/randonnee";
+    document.cookie = name+"="+value+expires+"; path=/";
 }
 
 function createCookieIfNotExists(name,value,days) {
@@ -81,7 +81,7 @@ function createCookieIfNotExists(name,value,days) {
         else {
             var expires = "";
         } 
-        document.cookie = name+"="+value+expires+"; path=/randonnee";
+        document.cookie = name+"="+value+expires+"; path=/";
     }
 }
 
