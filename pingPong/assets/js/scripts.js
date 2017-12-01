@@ -1,6 +1,9 @@
 
 jQuery(document).ready(function() {
-		
+	
+	if($.cookie("pingPongBlogUserIsLogged")){
+		window.location.replace("http://127.0.0.1:8080/pingPong/home.html");
+	}
     /*
         Fullscreen background
     */
@@ -54,7 +57,9 @@ jQuery(document).ready(function() {
 		
 		if(userExist){
 			e.preventDefault();
-			document.location.href='http://127.0.0.1:8080/pingPong/home.html?name='+username;
+			$.cookie("pingPongBlogUserIsLogged", true, { path: '/' });
+			$.cookie("pingPongBlogUserName", username, { path: '/' });
+			document.location.href='http://127.0.0.1:8080/pingPong/home.html';
 		}
 		else if(!userExist && formValided){
 			
@@ -115,14 +120,16 @@ jQuery(document).ready(function() {
 	$('.registration-form').on('submit', function(e) {
     	loginFormValidator.resetForm() ;
 		
-		var username = $(this).find('input[name="form-user-name"]').val();
-		var password = $(this).find('input[name="form-password"]').val();
+		var username = $(this).find('input[name="reg-form-user-name"]').val();
+		var password = $(this).find('input[name="reg-form-password"]').val();
 		
 		var formValided = registerFormValidator.form();
 		var userSaved = formValided ? saveUser(username, password) : false;
 		
 		if(userSaved){
 			e.preventDefault();
+			$.cookie("pingPongBlogUserIsLogged", true, { path: '/' });
+			$.cookie("pingPongBlogUserName", username, { path: '/' });
 			document.location.href='http://127.0.0.1:8080/pingPong/home.html';
 		}
 		
@@ -173,7 +180,7 @@ jQuery(document).ready(function() {
 		jQuery.ajax({
           url: "http://loisirs-web-backend.cleverapps.io/users",
           data:{
-				login : username,
+				name : username,
                 password : password
 		  },
           type: "POST",
