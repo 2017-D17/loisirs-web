@@ -29,7 +29,7 @@ App.ChatModule = (function () {
             } else {
                 sortMessages()
                 // remove the oldest message 
-                messages.splice(0, 1)
+                messages.pop()
                 // add the new message
                 messages.push(getJsonMsg(msg.data));
             }
