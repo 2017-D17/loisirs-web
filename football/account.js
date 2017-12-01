@@ -33,14 +33,21 @@ var account = (function () {
 
         })
     }
+
     $('#deconnexionButton').on('click', (event) => {
         deconnexion()
     });
+
     var deconnexion = function () {
         setCookie("username", "", -1);
         location = "index.html";
     }
-    function inscription() {
+
+    $('#inscriptionButton').on('click', (event) => {
+        inscription()
+    });
+
+    var inscription = function () {
         console.log("inscription en cours")
         // Get username and password
         var nom = document.getElementById("inputName").value;
@@ -68,7 +75,6 @@ var account = (function () {
         })
 
     }
-    return { connexion, deconnexion, inscription }
-
+    return { connexion, deconnexion, inscription };
 })();
 
