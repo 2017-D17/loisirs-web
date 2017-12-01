@@ -112,7 +112,6 @@ function eraseCookie(name) {
 
 /* deconnexion */
 function deconnection(){
-    event.preventDefault();
     eraseCookie('log_in');
     eraseCookie('username');
     document.location = "../index.html";
@@ -121,7 +120,6 @@ function deconnection(){
 /* login function */
 function login() {
     console.log('login');
-    event.preventDefault();
     /* get params from form */
     var user = {
         name: $('input[name="username"]').val(),
