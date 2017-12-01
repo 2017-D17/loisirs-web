@@ -111,10 +111,11 @@ function eraseCookie(name) {
 
 /* deconnexion */
 function deconnection(){
-    event.preventDefault();
+    // event.preventDefault();
     eraseCookie('log_in');
     eraseCookie('username');
     document.location = "../index.html";
+    return false;
 }
 
 /* login function */
