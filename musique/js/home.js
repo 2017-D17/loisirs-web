@@ -41,9 +41,16 @@ function deconnecter(e) {
 
 function displayComments() {
 	console.log(window.localStorage.comments)
-	if (window.localStorage.comments) {
+	var comments = []
+	if (window.localStorage.comments != "") {
+		comments = JSON.parse(window.localStorage.comments);
+		console.log("fuck");
+		console.log(comments);
 
-
+		for (c in comments) {
+			//$('#commentaires').addChild(c);
+			console.log(c);
+		}
 
 
 	} else {
@@ -51,11 +58,18 @@ function displayComments() {
 	}
 }
 
-function comment() {
-	console.log(document.getElementById("comment").value)
-	if (window.localStorage.comments.length == 0) {
-		window.localStorage.comments = document.getElementById("comment").value
+function postComment(event) {
+	event.preventDefault();
+	var date = new Date();
+	date = date.toLocaleString("fr-FR", {day : "numeric", month: "long", year: "numeric", hour:"numeric", minute:"numeric"});
+	var com = { "author": readCookie("username"), "text": document.getElementById("comment").value, "date" : date}
+	console.log(com)
+	if (window.localStorage.comments == "") {
+		window.localStorage.comments = JSON.stringify(com);
 	} else {
-		window.localStorage.comments += "," + document.getElementById("comment").value
+		var comments = JSON.parse(window.localStorage.comments);
+		comments.push(JSON.parse(com));
+		window.localStorage.comments = JSON.stringify(window.localStorage.comments);
 	}
+	return false;
 }

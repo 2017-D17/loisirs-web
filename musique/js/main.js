@@ -74,7 +74,7 @@ function connexion(e) {
 	if(nom.length > 0 && pwd.length > 0) { //validation de l'input
 		var json = $.getJSON("https://loisirs-web-backend.cleverapps.io/users/?name=" + nom).then(response => {
 							if (response.length == 0) {
-							document.getElementById('result').innerText = " Utilisateur inconnu";
+							document.getElementById('con_result').innerText = " Utilisateur inconnu";
 							} else {
 								if(response[0].password == pwd) {
 									console.log("yay");
