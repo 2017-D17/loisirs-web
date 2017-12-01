@@ -54,7 +54,7 @@ jQuery(document).ready(function() {
 		
 		if(userExist){
 			e.preventDefault();
-			document.location.href='http://127.0.0.1:8080/pingPong/home.html?name='+username;
+			document.location.href='http://127.0.0.1:8080/pingPong/home.html';
 		}
 		else if(!userExist && formValided){
 			
@@ -115,10 +115,11 @@ jQuery(document).ready(function() {
 	$('.registration-form').on('submit', function(e) {
     	loginFormValidator.resetForm() ;
 		
-		var username = $(this).find('input[name="form-user-name"]').val();
-		var password = $(this).find('input[name="form-password"]').val();
-		
 		var formValided = registerFormValidator.form();
+		
+		var username = $(this).find('input[name="reg-form-user-name"]').val();
+		var password = $(this).find('input[name="reg-form-password"]').val();
+		
 		var userSaved = formValided ? saveUser(username, password) : false;
 		
 		if(userSaved){
@@ -169,7 +170,8 @@ jQuery(document).ready(function() {
 	}
   
   	function saveUser(username, password){
-		var userSaved = false;	
+		var userSaved = false;
+
 		jQuery.ajax({
           url: "http://loisirs-web-backend.cleverapps.io/users",
           data:{
